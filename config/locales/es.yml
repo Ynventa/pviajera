@@ -21,6 +21,13 @@ es:
         title: Título
     models:
       user: Usuario
+      agencies_city: Agencias por ciudad
+      hotels_city: Hoteles por ciudad
+      agency: Agencia
+      city: Ciudad
+      hotel: Hotel
+      province: Provincia
+      region: Region
   devise:
     confirmations:
       confirmed: Tu cuenta ha sido confirmada satisfactoriamente.
