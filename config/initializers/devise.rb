@@ -7,6 +7,7 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = 'bbcb37470bb943f88e2516effd2a4ead5627389983aeb1cec5a2aa25a3a5175064e11cdbc1fe7bc8797c702a14a25aede76ba3e1d79740cdb31cec04614465b8'
+  config.secret_key = '4e33fb6675f71cf30ded7566724a12931ae311a6196792e3b08b1fe9be00ad4c0fe85532e149ed90619aebcb93fc4541316ea6dfb292e94b82a625648e791d45'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -251,6 +252,7 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(scope: :user).unshift :some_external_strategy
   # end
+
 
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`, and this engine
