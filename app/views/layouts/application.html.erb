@@ -9,8 +9,91 @@
   </head>
 
   <body>
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
-    <%= yield %>
+    <div class="ui container fluid">
+      <div class="ui sticky header-top">
+        <div class='ui grid padded'>
+          <div class='sixteen wide column'>
+            top
+          </div>
+        </div>
+      </div>
+
+      <div class='ui grid padded' id="context">
+
+        <div class='sixteen wide mobile six wide tablet three wide computer column'>
+          <div class="ui fluid search">
+            <div class="ui icon input">
+              <input class="prompt" type="text" placeholder="Search countries...">
+              <i class="search icon"></i>
+            </div>
+            <div class="results"></div>
+          </div>
+
+
+          <div class="ui fluid vertical text menu">
+            <a class="item">Run</a>
+            <a class="item">Walk</a>
+            <a class="item">Bike</a>
+            <a class="item">Bike</a>
+            <a class="item">Bike</a>
+          </div>
+
+        </div>
+        <div class='sixteen wide mobile ten wide tablet ten wide computer column'>
+          <div class="notice"><%= notice %></div>
+          <div class="alert"><%= alert %></div>
+          <%= yield %>
+        </div>
+        <div class='three wide computer only column'>
+        advertising
+        </div>
+
+      </div>
+
+    </div>
+
+<script type="text/javascript">
+var content = [
+  { title: 'Andorra' },
+  { title: 'United Arab Emirates' },
+  { title: 'Afghanistan' },
+  { title: 'Antigua' },
+  { title: 'Anguilla' },
+  { title: 'Albania' },
+  { title: 'Armenia' },
+  { title: 'Netherlands Antilles' },
+  { title: 'Angola' },
+  { title: 'Argentina' },
+  { title: 'American Samoa' },
+  { title: 'Austria' },
+  { title: 'Australia' },
+  { title: 'Aruba' },
+  { title: 'Aland Islands' },
+  { title: 'Azerbaijan' },
+  { title: 'Bosnia' },
+  { title: 'Barbados' },
+  { title: 'Bangladesh' },
+  { title: 'Belgium' },
+  { title: 'Burkina Faso' },
+  { title: 'Bulgaria' },
+  { title: 'Bahrain' },
+  { title: 'Burundi' }
+  // etc
+];
+
+$('.ui.search').search({
+    source: content
+  });
+
+$('.ui.sticky').sticky({
+    context: '#context'
+  });
+
+$('.rating').rating({
+    initialRating: 2,
+    maxRating: 4
+  });
+</script>
+
   </body>
 </html>

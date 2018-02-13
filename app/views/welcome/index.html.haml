@@ -1,0 +1,28 @@
+.ui.grid.attached
+	.sixteen.wide.column.logo-home
+		= image_tag "logo.png", {class: "ui centered big image"}
+	.sixteen.wide.column
+		.ui.menu
+			= link_to "Region 1", "#", {class: "item"}
+			= link_to "Region 2", "#", {class: "item"}
+			= link_to "Region 3", "#", {class: "item"}
+
+
+	- [1,2,3,4,5,6].each do |cel|
+		.sixteen.wide.mobile.eight.wide.tablet.four.wide.computer.column
+			.ui.card
+				.content
+					.right.floated.meta 14h
+					title
+				.image
+					= image_tag "http://via.placeholder.com/100x100"
+				.extra 
+					Rating:
+					.ui.star.rating{data:{rating:"4"}}
+				.extra.content
+					.ui.large.transparent.left.icon.input
+						= fa_icon "heart", {class: "outline"}
+						= text_field_tag :comment, "", placeholder: "Agregar comentario"
+
+
+
