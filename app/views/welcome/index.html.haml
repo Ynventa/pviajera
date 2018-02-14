@@ -8,17 +8,19 @@
 			= link_to "Region 3", "#", {class: "item"}
 
 
-	- [1,2,3,4,5,6].each do |cel|
+	- @destacados.each_with_index do |dest, i|
 		.sixteen.wide.mobile.eight.wide.tablet.four.wide.computer.column
 			.ui.card
 				.content
-					.right.floated.meta 14h
-					title
+					.right.floated.meta
+						= dest[:vistas]
+						vistas
+					= dest[:title]
 				.image
-					= image_tag "http://via.placeholder.com/100x100"
+					= image_tag "p#{(i%3)+1}.jpg"
 				.extra 
 					Rating:
-					.ui.star.rating{data:{rating:"4"}}
+					.ui.star.rating{data:{rating:dest[:starts], "max-rating": 5 }}
 				.extra.content
 					.ui.large.transparent.left.icon.input
 						= fa_icon "heart", {class: "outline"}

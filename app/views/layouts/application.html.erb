@@ -31,11 +31,11 @@
 
 
           <div class="ui fluid vertical text menu">
-            <a class="item">Run</a>
-            <a class="item">Walk</a>
-            <a class="item">Bike</a>
-            <a class="item">Bike</a>
-            <a class="item">Bike</a>
+            <% @cities.each_with_index do |city, i| %>
+              <%= link_to city[:title], "#", {class: "item #{i>4 ? 'hiddenItem isHidden' : ''}"} %>
+            <% end %>
+            <div class="ui divider"></div>
+            <%= link_to "+ Mostrar todas las ciudades", "javascript:void(0)", {class: "item bold", id: "showCities", data:{isHidden: 1}} %>
           </div>
 
         </div>
@@ -53,6 +53,7 @@
     </div>
 
 <script type="text/javascript">
+
 var content = [
   { title: 'Andorra' },
   { title: 'United Arab Emirates' },
@@ -80,6 +81,19 @@ var content = [
   { title: 'Burundi' }
   // etc
 ];
+
+$("#showCities").click(function(){
+  val = parseInt($(this).attr("data-isHidden"))
+  $(this).attr("data-isHidden", Math.abs(val-1))
+
+  $(".hiddenItem").toggleClass("isHidden")
+  if(val==1){
+    $(this).text("+ Ocultar todas las ciudades")
+  } else {
+    $(this).text("+ Mostrar todas las ciudades")
+  }
+
+});
 
 $('.ui.search').search({
     source: content

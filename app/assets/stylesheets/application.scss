@@ -15,3 +15,9 @@
  *= require semantic.min
  *= require font-awesome
  */
+
+.hiddenItem{
+	&.isHidden{
+		display: none !important;
+	}
+}	
