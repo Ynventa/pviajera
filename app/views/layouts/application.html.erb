@@ -13,24 +13,40 @@
       <div class="ui sticky header-top">
         <div class='ui grid padded'>
           <div class='sixteen wide column'>
-            top
+            <div class="ui secondary  menu">
+              <div class="header item"><%= image_tag "logo_blanco.png", {class: "ui tiny image"} %></div>
+
+              <div class="right menu">
+                <a class="ui item">
+                  Promociones
+                </a>
+                <a class="ui item">
+                  Regiones
+                </a>
+                <a class="ui item">
+                  Contacto
+                </a>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
 
       <div class='ui grid padded' id="context">
 
-        <div class='sixteen wide mobile six wide tablet three wide computer column'>
-          <div class="ui fluid search">
+        <div class='sixteen wide mobile six wide tablet three wide computer column left-menu'>
+          <!--<div class="ui fluid search">
             <div class="ui icon input">
               <input class="prompt" type="text" placeholder="Search countries...">
               <i class="search icon"></i>
             </div>
             <div class="results"></div>
-          </div>
+          </div>-->
 
 
           <div class="ui fluid vertical text menu">
+            <h3 class="ui header">Eleg&iacute; un destino</h3>
             <% @cities.each_with_index do |city, i| %>
               <%= link_to city[:title], "#", {class: "item #{i>4 ? 'hiddenItem isHidden' : ''}"} %>
             <% end %>
@@ -38,17 +54,66 @@
             <%= link_to "+ Mostrar todas las ciudades", "javascript:void(0)", {class: "item bold", id: "showCities", data:{isHidden: 1}} %>
           </div>
 
+          <div class="contact-form">
+            <form class="ui tiny form">
+              <div class="field">
+                <label>Nombre completo</label>
+                <input type="text" name="first-name" placeholder="Nombre completo">
+              </div>
+              <div class="field">
+                <label>Tel&eacute;fono</label>
+                <input type="text" name="last-name" placeholder="Tel&eacute;fono">
+              </div>
+              <div class="field">
+                <label>Email</label>
+                <input type="text" name="last-name" placeholder="Email">
+              </div>
+              <div class="field">
+                <label>Mensage</label>
+                <textarea rows="2"></textarea>
+              </div>
+              <button class="ui button" type="submit">Enviar</button>
+            </form>
+
+          </div>
+
+            
+
         </div>
-        <div class='sixteen wide mobile ten wide tablet ten wide computer column'>
+        <div class='sixteen wide mobile ten wide tablet ten wide computer column center-panel'>
           <div class="notice"><%= notice %></div>
           <div class="alert"><%= alert %></div>
           <%= yield %>
         </div>
         <div class='three wide computer only column'>
-        advertising
+
+        <div class="ui sticky sticky-ad" style="width: 100% !important; height: 100% !important;">
+          <a href="#" style="background: url('assets/banner.jpg') no-repeat; background-size: contain; background-position: center">
+          </a>
+        </div>
+
         </div>
 
       </div>
+
+      <div class='ui grid'>
+        <div class='sixteen wide mobile sixteen wide tablet thirteen wide computer column'>
+          <div class="ui inverted vertical footer segment">
+            <div class="ui center aligned container">
+              <%= image_tag "logo_blanco.png", {class: "ui centered small image"} %>
+              <div class="ui horizontal inverted small divided link list">
+                <a class="item" href="#">Site Map</a>
+                <a class="item" href="#">Contact Us</a>
+                <a class="item" href="#">Terms and Conditions</a>
+                <a class="item" href="#">Privacy Policy</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
 
     </div>
 
@@ -106,7 +171,11 @@ $('.ui.sticky').sticky({
 $('.rating').rating({
     initialRating: 2,
     maxRating: 4
-  });
+});
+
+$( document ).ready(function() {
+
+});
 </script>
 
   </body>

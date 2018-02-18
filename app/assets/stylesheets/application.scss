@@ -16,8 +16,88 @@
  *= require font-awesome
  */
 
+body{
+ 	background: url("bg.png") no-repeat fixed;
+ 	background-size: cover;
+}
+
+.header-top{
+	background: #f69820;
+	color: #999999;
+	text-align: right;
+	.ui{
+		&.grid{
+			&>.column:not(.row){
+				padding:0px;
+			}
+		}
+		&.menu{
+			a.item{
+				color: #FFFFFF;
+				font-weight: bold;
+				&:hover{
+					color: #FFFFFF;
+				}
+			}
+		}
+
+	}
+}
+
+.center-panel{
+	//background:#EEEEEE;
+}
+
 .hiddenItem{
 	&.isHidden{
 		display: none !important;
 	}
 }	
+
+.left-menu{
+	.ui.text.menu{
+		a.item{
+			color: #0b71b9;
+			&:hover{
+				//color: #01abd6;
+			}
+		}
+	}	
+}
+
+.ui.sticky{
+	&.sticky-ad{
+		&.fixed, &.bottom{
+			padding-top: 70px;
+		}
+		&.bottom{
+			a{
+				margin-top: 70px;
+			}
+		}
+		&>a{
+			display:block;
+			height: 85vh;
+		}
+
+	}
+	&.header-top{
+	    box-shadow: none;
+	    transition: box-shadow 0.5s ease, padding 0.5s ease;
+		&.fixed{
+			box-shadow: 0px 5px 2px 0px rgba(0,0,0,0.4);
+		}		
+	}
+}
+
+.contact-form{
+	background: #0b71b9;
+	padding:10px;
+	.form{
+		.field{
+			label{
+				color: #FFFFFF;
+			}
+		}			
+	}
+}

@@ -13,19 +13,12 @@
 }
 
 .logo-home{
-	background: #333333;
+	//background: rgba(50,50,50,0.7);
+	background: url("isla-victoria.jpg");
+	background-size: cover;
 	.image{
 		margin: 50px auto;
 	}
-}
-
-.header-top{
-	.ui.grid{
-		&>.column:not(.row){
-			padding:0px;
-		}
-	}
-
 }
 
 .ui.grid{

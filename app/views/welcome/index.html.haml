@@ -12,19 +12,20 @@
 		.sixteen.wide.mobile.eight.wide.tablet.four.wide.computer.column
 			.ui.card
 				.content
-					.right.floated.meta
-						= dest[:vistas]
-						vistas
-					= dest[:title]
+					/.right.floated.meta
+					/	= dest[:vistas]
+					/	vistas
+					%strong
+						= dest[:title]
 				.image
 					= image_tag "p#{(i%3)+1}.jpg"
 				.extra 
 					Rating:
 					.ui.star.rating{data:{rating:dest[:starts], "max-rating": 5 }}
-				.extra.content
-					.ui.large.transparent.left.icon.input
-						= fa_icon "heart", {class: "outline"}
-						= text_field_tag :comment, "", placeholder: "Agregar comentario"
+				/.extra.content
+				/	.ui.large.transparent.left.icon.input
+				/		= fa_icon "heart", {class: "outline"}
+				/		= text_field_tag :comment, "", placeholder: "Agregar comentario"
 
 
 
