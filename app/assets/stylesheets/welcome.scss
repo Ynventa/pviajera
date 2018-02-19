@@ -14,8 +14,8 @@
 
 .logo-home{
 	//background: rgba(50,50,50,0.7);
-	background: url(<%= asset_path "isla-victoria.jpg" %>);
-	background-size: cover;
+ 	background-image: asset-url("isla-victoria.jpg");
+ 	background-size: cover;
 	.image{
 		margin: 50px auto;
 	}
