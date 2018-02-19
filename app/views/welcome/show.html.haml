@@ -1,0 +1,71 @@
+.ui.grid.attached.gallery
+	%a.twelve.wide.column{href:"javascript:void(0)", style: "background: url('/assets/san-carlos-de-bariloche.jpg') no-repeat; background-size: cover; background-position: center", data: {imageindex: "0"}}
+	.four.wide.column
+		.ui.grid.attached
+			- @destacados.each_with_index do |dest, i|
+				%a.eight.wide.column{href:"javascript:void(0)", style: "background: url('/assets/p#{(i%3)+1}.jpg') no-repeat; background-size: cover; background-position: center", data: {imageindex: "#{i+1}"}}
+
+
+%h2.ui.header
+	.content 
+		Ciudad de San Carlos de Bariloche
+		.sub.header
+			.ui.star.rating{data:{rating:3, "max-rating": 5 }}
+
+
+.ui.stacked.segment
+	%p
+		La majestuosa ciudad de San Carlos de Bariloche se encuentra a orillas del lago Nahuel Huapi, espejo de agua que junto a montañas y bosques integra el contexto de uno de los lugares más bellos de la Argentina y del mundo.
+	%p
+		Bariloche tiene como fecha de fundación el año 1902. Su nombre surgió como un juego de palabras entre "Carlos Wiederhold", quien instaló el primer almacén de ramos generales del lugar (de allí la parte de "San Carlos"), y una deformación del término "vuriloche" ("gente distinta o diferente, de atrás o del otro lado"), utilizado por los mapuches para denominar a otros pueblos originarios que habitaban los valles de la zona este de la cordillera de los Andes antes de su propia llegada a la región.
+
+.ui.stacked.segment
+	.ui.embed.video{data:{url: "https://www.youtube.com/embed/LiKW2ruKXfk"}}
+
+.ui.stacked.segment
+	.ui.embed.map{data:{url: "https://www.google.com/maps/embed/v1/place?key=AIzaSyBVLdgkB40RtgrBzJOUVnO6T4g7c5ohQMo&center=-41.1372535,-71.299183&zoom=16"}}
+
+
+
+.ui.modal.modal_gallery
+	%i.close.icon
+	.image.content
+		.ui.massive.image
+			= image_tag "https://semantic-ui.com/images/avatar2/large/rachel.png", {class: "", id: "gallery_image"}
+	.actions
+		.ui.button#prev Anterior
+		.ui.button#next Siguiente
+
+:javascript
+	var images_gallery=[];
+	images_gallery[0] = "/assets/san-carlos-de-bariloche.jpg"
+	var current_image = 0;
+	#{raw @destacados.each_with_index.map{|dest, i| "images_gallery[#{i+1}] = '/assets/p#{(i%3)+1}.jpg'"}.join(";")}
+	$(function(){
+		$("a.column").click(function(){
+			img = parseInt($(this).attr("data-imageindex"));
+			console.log(img, images_gallery[current_image])
+			current_image=img
+			$("#gallery_image").attr("src", images_gallery[current_image])
+			$('.ui.modal.modal_gallery').modal('show');
+		});
+
+		$(".modal_gallery #prev").click(function(){
+			current_image--
+			if(current_image<0)
+				current_image=0
+			$("#gallery_image").attr("src", images_gallery[current_image])
+			$('.ui.modal.modal_gallery').modal('refresh');
+			
+		});
+		$(".modal_gallery #next").click(function(){
+			current_image++
+			if(current_image>=images_gallery.length)
+				current_image=images_gallery.length-1
+			$("#gallery_image").attr("src", images_gallery[current_image])
+			$('.ui.modal.modal_gallery').modal('refresh');
+		});
+
+		$('.ui.embed').embed();
+	});
+

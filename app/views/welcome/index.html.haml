@@ -16,7 +16,7 @@
 					/	= dest[:vistas]
 					/	vistas
 					%strong
-						= dest[:title]
+						= link_to dest[:title], welcome_path(1)
 				.image
 					= image_tag "p#{(i%3)+1}.jpg"
 				.extra 
