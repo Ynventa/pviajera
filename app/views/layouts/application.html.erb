@@ -139,33 +139,32 @@ var content = [
   // etc
 ];
 
-$("#showCities").click(function(){
-  val = parseInt($(this).attr("data-isHidden"))
-  $(this).attr("data-isHidden", Math.abs(val-1))
-
-  $(".hiddenItem").toggleClass("isHidden")
-  if(val==1){
-    $(this).text("+ Ocultar todas las ciudades")
-  } else {
-    $(this).text("+ Mostrar todas las ciudades")
-  }
-
-});
-
-$('.ui.search').search({
-    source: content
-  });
-
-$('.ui.sticky').sticky({
-    context: '#context'
-  });
-
-$('.rating').rating({
-    initialRating: 2,
-    maxRating: 4
-});
-
 $( document ).ready(function() {
+  $("#showCities").click(function(){
+    val = parseInt($(this).attr("data-isHidden"))
+    $(this).attr("data-isHidden", Math.abs(val-1))
+
+    $(".hiddenItem").toggleClass("isHidden")
+    if(val==1){
+      $(this).text("+ Ocultar todas las ciudades")
+    } else {
+      $(this).text("+ Mostrar todas las ciudades")
+    }
+
+  });
+
+  $('.ui.search').search({
+      source: content
+    });
+
+  $('.ui.sticky').sticky({
+      context: '#context'
+    });
+
+  $('.rating').rating({
+      initialRating: 2,
+      maxRating: 4
+  });
 });
 </script>
 
