@@ -6,6 +6,8 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   </head>
 
   <body>
@@ -18,8 +20,15 @@
 
               <div class="right menu">
                 <%= link_to "Inicio", root_path, class: "ui item" %>
+                <div class="ui dropdown item">
+                  Actividades <i class="dropdown icon"></i>
+                  <div class="menu">
+                    <% @actividades.each do |act| %>
+                      <%= link_to act[:title], "#", class: "ui item" %>
+                    <% end %>
+                  </div>
+                </div>
                 <%= link_to "Promociones", "#", class: "ui item" %>
-                <%= link_to "Regiones", "#", class: "ui item" %>
                 <%= link_to "Contacto", "#", class: "ui item" %>
               </div>
             </div>
@@ -31,23 +40,62 @@
       <div class='ui grid padded' id="context">
 
         <div class='sixteen wide mobile six wide tablet three wide computer column left-menu'>
-          <!--<div class="ui fluid search">
-            <div class="ui icon input">
-              <input class="prompt" type="text" placeholder="Search countries...">
-              <i class="search icon"></i>
-            </div>
-            <div class="results"></div>
-          </div>-->
-
           <div class="ui fluid vertical text menu">
-            <h3 class="ui header">Eleg&iacute; un destino</h3>
-            <% @cities.each_with_index do |city, i| %>
-              <%= link_to city[:title], "#", {class: "item #{i>4 ? 'hiddenItem isHidden' : ''}"} %>
-            <% end %>
+            <h3 class="ui header">Explorá por región</h3>
+            <div class="ui large middle aligned divided list regions">
+              <% @regions.each_with_index do |city, i| %>
+                <div class="item">
+                  <i class="map outline icon large"></i>
+                  <!--
+                  <i class="bookmark outline icon large"></i>
+                  <i class="hand point right icon large"></i>
+                  <i class="caret right icon large"></i>
+                  <i class="genderless icon large"></i>
+                  <i class="arrow alternate circle right outline icon large"></i>-->
+                  <div class="content">
+                    <div class="header"><%= link_to city[:title], "#" %></div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
             <div class="ui divider"></div>
-            <%= link_to "+ Mostrar todas las ciudades", "javascript:void(0)", {class: "item bold", id: "showCities", data:{isHidden: 1}} %>
+
+            <h3 class="ui header">Elegí una ciudad</h3>
+            <div class="ui fluid search">
+              <div class="ui icon input">
+                <input class="prompt" type="text" placeholder="Buscar ciudade...">
+                <i class="search icon"></i>
+              </div>
+              <div class="results"></div>
+            </div>
+
+            <div class="ui divider"></div>
+
+            <div class="ui link cards">
+              <% @banners[0..1].each do |banner| %>
+                <div class="card">
+                  <div class="image">
+                    <%= image_tag banner[:image], {class: ""} %>
+                  </div>
+                  <div class="content">
+                    <div class="header"><%= banner[:title] %></div>
+                    <div class="description">
+                      <div><i class="phone volume icon"></i><%= banner[:contact][:phone] %></div>
+                      <div><i class="at icon"></i><%= banner[:contact][:email] %></div>
+                      <div><i class="map marker alternate icon"></i><%= banner[:contact][:street] %></div>
+                      <div><i class="globe icon"></i><%= banner[:contact][:web] %></div>
+                      <div><i class="facebook icon"></i><%= banner[:contact][:facebook] %></div>
+                    </div>
+
+                  </div>
+                </div>
+              <% end %>
+            </div>
+
+
           </div>
 
+<!--
           <div class="contact-form">
             <form class="ui tiny form">
               <div class="field">
@@ -70,7 +118,7 @@
             </form>
 
           </div>
-
+-->
             
 
         </div>
@@ -81,10 +129,31 @@
         </div>
         <div class='three wide computer only column'>
 
-        <div class="ui sticky sticky-ad" style="width: 100% !important; height: 100% !important;">
-          <a href="#" style="background-image: url(<%= asset_path 'banner.jpg' %>);  background-repeat: no-repeat; background-size: contain; background-position: center">
-          </a>
+
+
+<div class="ui link cards">
+  <% @banners[1..-1].each do |banner| %>
+    <div class="card">
+      <div class="image">
+        <%= image_tag banner[:image], {class: ""} %>
+      </div>
+      <div class="content">
+        <div class="header"><%= banner[:title] %></div>
+        <div class="description">
+          <div><i class="phone volume icon"></i><%= banner[:contact][:phone] %></div>
+          <div><i class="at icon"></i><%= banner[:contact][:email] %></div>
+          <div><i class="map marker alternate icon"></i><%= banner[:contact][:street] %></div>
+          <div><i class="globe icon"></i><%= banner[:contact][:web] %></div>
+          <div><i class="facebook icon"></i><%= banner[:contact][:facebook] %></div>
         </div>
+
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+
 
         </div>
 
@@ -108,51 +177,18 @@
 
     </div>
 
-
 <script type="text/javascript">
+var content = [];
 
-var content = [
-  { title: 'Andorra' },
-  { title: 'United Arab Emirates' },
-  { title: 'Afghanistan' },
-  { title: 'Antigua' },
-  { title: 'Anguilla' },
-  { title: 'Albania' },
-  { title: 'Armenia' },
-  { title: 'Netherlands Antilles' },
-  { title: 'Angola' },
-  { title: 'Argentina' },
-  { title: 'American Samoa' },
-  { title: 'Austria' },
-  { title: 'Australia' },
-  { title: 'Aruba' },
-  { title: 'Aland Islands' },
-  { title: 'Azerbaijan' },
-  { title: 'Bosnia' },
-  { title: 'Barbados' },
-  { title: 'Bangladesh' },
-  { title: 'Belgium' },
-  { title: 'Burkina Faso' },
-  { title: 'Bulgaria' },
-  { title: 'Bahrain' },
-  { title: 'Burundi' }
-  // etc
-];
+<% 
+@cities_and_regions[0..44].each do |city|
+%>
+  content.push({title: "<%= city['city'].to_s %>", region: "<%= city['region'].to_s %>"})
+<%
+end
+%>
 
 $( document ).ready(function() {
-  $("#showCities").click(function(){
-    val = parseInt($(this).attr("data-isHidden"))
-    $(this).attr("data-isHidden", Math.abs(val-1))
-
-    $(".hiddenItem").toggleClass("isHidden")
-    if(val==1){
-      $(this).text("+ Ocultar todas las ciudades")
-    } else {
-      $(this).text("+ Mostrar todas las ciudades")
-    }
-
-  });
-
   $('.ui.search').search({
       source: content
     });
@@ -165,6 +201,7 @@ $( document ).ready(function() {
       initialRating: 2,
       maxRating: 4
   });
+  $('.ui.dropdown').dropdown();
 });
 </script>
 

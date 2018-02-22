@@ -3,29 +3,31 @@
 		= image_tag "logo_shadow.png", {class: "ui centered big image"}
 	.sixteen.wide.column
 		.ui.menu
-			= link_to "Region 1", "#", {class: "item"}
-			= link_to "Region 2", "#", {class: "item"}
-			= link_to "Region 3", "#", {class: "item"}
+			- @regions.each do |reg|
+				%a.item{href: "#"}
+					%i.map.outline.icon
+					= reg[:title]
 
 
-	- @destacados.each_with_index do |dest, i|
-		.sixteen.wide.mobile.eight.wide.tablet.four.wide.computer.column
-			.ui.card
-				.content
-					/.right.floated.meta
-					/	= dest[:vistas]
-					/	vistas
-					%strong
-						= link_to dest[:title], welcome_path(1)
-				.image
-					= image_tag "p#{(i%3)+1}.jpg"
-				.extra 
-					Rating:
-					.ui.star.rating{data:{rating:dest[:starts], "max-rating": 5 }}
-				/.extra.content
-				/	.ui.large.transparent.left.icon.input
-				/		= fa_icon "heart", {class: "outline"}
-				/		= text_field_tag :comment, "", placeholder: "Agregar comentario"
+	- @actividades.each_with_index do |act, i|
+		.sixteen.wide.mobile.eight.wide.tablet.eight.wide.computer.column
+			.ui.link.cards
+				.ui.card.fluid
+					%a.content{href: welcome_path(1)}
+						/.right.floated.meta
+						/	= act[:vistas]
+						/	vistas
+						%h3.ui.header
+							= act[:title]
+					%a.image{href: welcome_path(1)}
+						= image_tag act[:image]
+					.extra 
+						Rating:
+						.ui.star.rating{data:{rating:act[:starts], "max-rating": 5 }}
+					/.extra.content
+					/	.ui.large.transparent.left.icon.input
+					/		= fa_icon "heart", {class: "outline"}
+					/		= text_field_tag :comment, "", placeholder: "Agregar comentario"
 
 
 
