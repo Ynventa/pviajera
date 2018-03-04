@@ -12,9 +12,9 @@
  *
  *= require_tree .
  *= require_self
- *= require semantic
  *= require font-awesome
  */
+@import "semantic-ui";
 
 body{
  	background-image: asset-url("bg.png");

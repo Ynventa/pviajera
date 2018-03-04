@@ -31,6 +31,7 @@ gem 'devise'
 gem 'rails_admin', '~> 1.2'
 
 gem "font-awesome-rails"
+gem 'semantic-ui-sass'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
