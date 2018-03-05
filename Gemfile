@@ -30,8 +30,11 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'rails_admin', '~> 1.2'
 
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
 gem 'semantic-ui-sass'
+gem 'active_model_serializers'
+gem 'paperclip', '~> 5.2.1'
+gem 'seed_dump'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

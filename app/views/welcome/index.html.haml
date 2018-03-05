@@ -3,27 +3,24 @@
 		= image_tag "logo_shadow.png", {class: "ui centered big image"}
 	.sixteen.wide.column
 		.ui.menu
-			- @regions.each do |reg|
+			- @regions.each do |region|
 				%a.item{href: "#"}
 					%i.map.outline.icon
-					= reg[:title]
+					= region[:name]
 
 
-	- @actividades.each_with_index do |act, i|
+	- @actividades.each do |act|
 		.sixteen.wide.mobile.eight.wide.tablet.eight.wide.computer.column
 			.ui.link.cards
 				.ui.card.fluid
 					%a.content{href: welcome_path(1)}
-						/.right.floated.meta
-						/	= act[:vistas]
-						/	vistas
 						%h3.ui.header
-							= act[:title]
+							= act[:name]
 					%a.image{href: welcome_path(1)}
-						= image_tag act[:image]
+						= image_tag "a1.jpg"
 					.extra 
 						Rating:
-						.ui.star.rating{data:{rating:act[:starts], "max-rating": 5 }}
+						.ui.star.rating{data:{rating: (0...5).to_a.sample, "max-rating": 5 }}
 					/.extra.content
 					/	.ui.large.transparent.left.icon.input
 					/		= fa_icon "heart", {class: "outline"}

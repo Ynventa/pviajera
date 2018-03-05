@@ -10,10 +10,14 @@
 #  province_id :integer
 #
 
-class City < ApplicationRecord
-	validates :name, :region_id, :province_id, presence: true
-	validates :name, length: { in: 2..200 }	
+class CitySerializer < ActiveModel::Serializer
+  attributes :id, :name, :region_name, :province_name
 
-	belongs_to :region
-	belongs_to :province
+  def region_name
+  	object.region.name
+  end
+
+  def province_name
+  	object.province.name
+  end
 end

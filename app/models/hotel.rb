@@ -13,5 +13,4 @@ class Hotel < ApplicationRecord
 	validates :name, presence: true
 	validates :name, length: { in: 2..200 }
 	validates :description, length: { in: 10..255 }, allow_blank: true
-
 end

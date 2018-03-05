@@ -10,7 +10,6 @@
 #
 
 class HotelsCity < ApplicationRecord
-
 	belongs_to :city
 	belongs_to :hotel
 end

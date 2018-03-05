@@ -28,6 +28,8 @@ es:
       hotel: Hotel
       province: Provincia
       region: Region
+      activity: Actividad
+      client: Cliente
   devise:
     confirmations:
       confirmed: Tu cuenta ha sido confirmada satisfactoriamente.
