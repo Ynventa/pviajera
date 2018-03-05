@@ -13,10 +13,10 @@
 		.sixteen.wide.mobile.eight.wide.tablet.eight.wide.computer.column
 			.ui.link.cards
 				.ui.card.fluid
-					%a.content{href: welcome_path(1)}
+					%a.content{href: activity_path(act.id)}
 						%h3.ui.header
 							= act[:name]
-					%a.image{href: welcome_path(1)}
+					%a.image{href: activity_path(act.id)}
 						= image_tag "a1.jpg"
 					.extra 
 						Rating:

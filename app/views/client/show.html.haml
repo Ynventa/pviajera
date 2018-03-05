@@ -1,0 +1,35 @@
+.ui.grid.attached.gallery
+	%a.twelve.wide.column{href:"javascript:void(0)", style: "background-image: url(#{asset_path @client.image}); background-repeat: no-repeat; background-size: cover; background-position: center", data: {imageindex: "0"}}
+	.four.wide.column
+
+.ui.divider
+
+.ui.breadcrumb
+	= link_to "Inicio", root_path, {class: "section"}
+	%i.right.chevron.icon.divider
+	= link_to @client.activity.name, activity_path(@client.activity.id), {class: "section"}
+	%i.right.chevron.icon.divider
+	.active.section
+		= @client.name
+
+%h2.ui.header
+	.content 
+		= @client.name
+		.sub.header
+			.ui.star.rating{data:{rating:3, "max-rating": 5 }}
+
+- if @client.description.present?
+	.ui.stacked.segment
+		= @client.description
+
+.ui.stacked.segment
+	.ui.embed.video{data:{url: @client.youtube_embed}}
+
+.ui.stacked.segment
+	.ui.embed.map{data:{url: "https://www.google.com/maps/embed/v1/place?key=AIzaSyBVLdgkB40RtgrBzJOUVnO6T4g7c5ohQMo&center=-41.1372535,-71.299183&zoom=16"}}
+
+
+:javascript
+	$(function(){
+		$('.ui.embed').embed();
+	});

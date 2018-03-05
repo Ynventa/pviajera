@@ -26,4 +26,14 @@ class Client < ApplicationRecord
 
 	has_attached_file :image, styles: { large: "1000x565>", medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
 	validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+
+  def youtube_embed
+    regex = /(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+    match = regex.match(self.youtube_url)
+    if match && !match[1].blank?
+      "https://www.youtube.com/embed/#{match[1]}"
+    else
+      nil
+    end
+  end
 end

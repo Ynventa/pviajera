@@ -25,7 +25,7 @@
                   <div class="menu">
                     <% if @actividades.present? %>
                       <% @actividades.each do |act| %>
-                        <%= link_to act[:name], "#", class: "ui item" %>
+                        <%= link_to act[:name], activity_path(act.id), class: "ui item" %>
                       <% end %>
                     <% end %>
                   </div>
