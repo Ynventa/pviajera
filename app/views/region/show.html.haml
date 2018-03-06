@@ -1,0 +1,31 @@
+.ui.breadcrumb
+	= link_to "Inicio", root_path, {class: "section"}
+	%i.right.chevron.icon.divider
+	= link_to "Regiones", "#", {class: "section"}
+	%i.right.chevron.icon.divider
+	.active.section
+		= @region.name
+
+%h2.ui.header
+	.content 
+		= @region.name
+
+.ui.grid.attached
+	- @cities.each do |city|
+		.sixteen.wide.mobile.eight.wide.tablet.five.wide.computer.column
+			.ui.cards
+				.ui.card.fluid
+					.content
+						%h3.ui.header
+							= city.name
+					.content
+						- new_activity = 0
+						- Client.where(city_id: city.id).order(:activity_id).each do |client|
+							- if new_activity!=client.activity_id
+								- new_activity=client.activity_id
+								.ui.small.feed
+									.event
+										.content
+											.summary
+												= link_to client.activity.name, [client.activity, city]
+

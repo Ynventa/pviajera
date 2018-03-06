@@ -4,9 +4,9 @@
 	.sixteen.wide.column
 		.ui.menu
 			- @regions.each do |region|
-				%a.item{href: "#"}
+				%a.item{href: region_path(region.id)}
 					%i.map.outline.icon
-					= region[:name]
+					= region.name
 
 
 	- @actividades.each do |act|
@@ -17,7 +17,7 @@
 						%h3.ui.header
 							= act[:name]
 					%a.image{href: activity_path(act.id)}
-						= image_tag "a1.jpg"
+						= image_tag act.image.url(:medium)
 					.extra 
 						Rating:
 						.ui.star.rating{data:{rating: (0...5).to_a.sample, "max-rating": 5 }}

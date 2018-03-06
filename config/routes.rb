@@ -4,8 +4,12 @@ Rails.application.routes.draw do
 	root 'welcome#index'
 
 	resources :welcome 
-	resources :activity, only: [:index, :show]
+	resources :activity, only: [:index, :show] do
+		resources :city, only: [:index, :show]
+	end
 	resources :client, only: [:index, :show]
+	resources :region, only: [:index, :show]
+	resources :city, only: [:index, :show]
 
 	namespace :v1 do
 		resources :cities, only: [:index]

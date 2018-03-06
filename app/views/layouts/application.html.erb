@@ -46,7 +46,7 @@
             <h3 class="ui header">Explorá por región</h3>
             <div class="ui large middle aligned divided list regions">
               <% if @regions.present? %>
-                <% @regions.each do |region, i| %>
+                <% @regions.each do |region| %>
                   <div class="item">
                     <i class="map outline icon large"></i>
                     <!--
@@ -56,7 +56,7 @@
                     <i class="genderless icon large"></i>
                     <i class="arrow alternate circle right outline icon large"></i>-->
                     <div class="content">
-                      <div class="header"><%= link_to region[:name], "#" %></div>
+                      <div class="header"><%= link_to region.name, region_path(region.id) %></div>
                     </div>
                   </div>
                 <% end %>
