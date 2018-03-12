@@ -30,6 +30,7 @@ es:
       region: Region
       activity: Actividad
       client: Cliente
+      client_images: Imagenes de cliente
   devise:
     confirmations:
       confirmed: Tu cuenta ha sido confirmada satisfactoriamente.

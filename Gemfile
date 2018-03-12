@@ -35,6 +35,7 @@ gem 'semantic-ui-sass'
 gem 'active_model_serializers'
 gem 'paperclip', '~> 5.2.1'
 gem 'seed_dump'
+gem 'rails_admin_google_map'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

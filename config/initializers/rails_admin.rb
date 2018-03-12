@@ -38,4 +38,33 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.model 'Client' do
+    edit do
+      field :name
+      field :description
+      field :activity
+      field :city
+      field :location_label do
+        read_only true
+        label "Dirección"
+      end
+      field :google_map, :google_map do
+        google_api_key 'AIzaSyBkEq2XlKAtX1ASfflNaRTK9cX4c0hg0JA'
+        default_latitude -32.9535803
+        default_longitude -60.7221068
+        default_zoom_level 13
+      end
+      field :phone
+      field :whatsapp
+      field :email
+      field :web
+      field :facebook
+      field :instagram
+      field :youtube_url
+      field :image
+      field :client_images
+    end
+  end
+
 end
