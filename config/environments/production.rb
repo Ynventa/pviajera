@@ -61,7 +61,7 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "turismo_#{Rails.env}"
   # config.action_mailer.perform_caching = false
 
-  config.action_mailer.default_url_options = {host: '138.68.237.178'}
+  config.action_mailer.default_url_options = { :host => "patagoniaviajera.com" }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
