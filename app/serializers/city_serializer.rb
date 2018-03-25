@@ -9,9 +9,10 @@
 #  updated_at  :datetime         not null
 #  province_id :integer
 #
+include Rails.application.routes.url_helpers
 
 class CitySerializer < ActiveModel::Serializer
-  attributes :id, :name, :region_name, :province_name
+  attributes :id, :name, :region_name, :province_name, :url
 
   def region_name
   	object.region.name
@@ -19,5 +20,9 @@ class CitySerializer < ActiveModel::Serializer
 
   def province_name
   	object.province.name
+  end
+
+  def url
+  	city_path object.id
   end
 end

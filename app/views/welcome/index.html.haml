@@ -18,13 +18,6 @@
 							= act[:name]
 					%a.image{href: activity_path(act.id)}
 						= image_tag act.image.url(:medium)
-					.extra 
-						Rating:
-						.ui.star.rating{data:{rating: (0...5).to_a.sample, "max-rating": 5 }}
-					/.extra.content
-					/	.ui.large.transparent.left.icon.input
-					/		= fa_icon "heart", {class: "outline"}
-					/		= text_field_tag :comment, "", placeholder: "Agregar comentario"
 
 
 

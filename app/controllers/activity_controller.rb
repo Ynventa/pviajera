@@ -2,6 +2,7 @@ class ActivityController < ApplicationController
 	before_action :load_vars
 	
 	def index
+		@activities = Activity.all
 	end
 
 	def show

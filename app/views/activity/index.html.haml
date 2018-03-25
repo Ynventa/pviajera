@@ -1,3 +1,23 @@
-%h1 Activity#index
-%p 
-	Find me in app/views/activity/index.html.erb
+.ui.breadcrumb
+	= link_to "Inicio", root_path, {class: "section"}
+	%i.right.chevron.icon.divider
+	.active.section
+		Actividades
+
+
+%h2.ui.header
+	.content 
+		Actividades
+
+.ui.grid.attached
+	- @activities.each do |activity|
+		.sixteen.wide.mobile.eight.wide.tablet.eight.wide.computer.column
+			.ui.link.cards
+				.ui.card.fluid
+					%a.content{href: activity_path(activity.id)}
+						%h3.ui.header
+							= activity.name
+					%a.image{href: activity_path(activity.id)}
+						= image_tag activity.image.url(:medium)
+
+

@@ -9,8 +9,8 @@
 #  updated_at  :datetime         not null
 #  province_id :integer
 #
-
 class City < ApplicationRecord
+
 	validates :name, :region_id, :province_id, presence: true
 	validates :name, length: { in: 2..200 }	
 

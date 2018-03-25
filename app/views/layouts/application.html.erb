@@ -11,16 +11,40 @@
   </head>
 
   <body>
-    <div class="ui container fluid">
+    <div class="ui fluid container">
+
+
       <div class="ui sticky header-top">
         <div class='ui grid padded'>
           <div class='sixteen wide column'>
-            <div class="ui secondary  menu">
+            <div class="ui secondary menu">
               <div class="header item"><a href="<%= root_path %>"><%= image_tag "logo_blanco.png", {class: "ui tiny image"} %></a></div>
-
               <div class="right menu">
-                <%= link_to "Inicio", root_path, class: "ui item" %>
-                <div class="ui dropdown item">
+
+                <div class="ui dropdown icon item mobile only grid">
+                  <i class="bars icon"></i>
+                  <div class="menu">
+                    <%= link_to "Inicio", root_path, class: "item" %>
+                    <div class="item">
+                      <i class="dropdown icon"></i>
+                      <span class="text">Actividades</span>
+                      <div class="menu">
+                      <% if @actividades.present? %>
+                        <% @actividades.each do |act| %>
+                          <%= link_to act[:name], activity_path(act.id), class: "item" %>
+                        <% end %>
+                      <% end %>
+                      </div>
+                    </div>
+                    <%= link_to "Promociones", "#", class: "ui item" %>
+                    <%= link_to "Contacto", "#", class: "ui item" %>
+
+                  </div>
+                </div>
+
+
+                <%= link_to "Inicio", root_path, class: "ui item tablet only computer only grid" %>
+                <div class="ui dropdown item tablet only computer only grid">
                   Actividades <i class="dropdown icon"></i>
                   <div class="menu">
                     <% if @actividades.present? %>
@@ -30,8 +54,8 @@
                     <% end %>
                   </div>
                 </div>
-                <%= link_to "Promociones", "#", class: "ui item" %>
-                <%= link_to "Contacto", "#", class: "ui item" %>
+                <%= link_to "Promociones", "#", class: "ui item tablet only computer only grid" %>
+                <%= link_to "Contacto", "#", class: "ui item tablet only computer only grid" %>
               </div>
             </div>
 
@@ -41,7 +65,7 @@
 
       <div class='ui grid padded' id="context">
 
-        <div class='sixteen wide mobile six wide tablet three wide computer column left-menu'>
+        <div class='six wide tablet only three wide computer only column left-menu'>
           <div class="ui fluid vertical text menu">
             <h3 class="ui header">Explorá por región</h3>
             <div class="ui large middle aligned divided list regions">
@@ -217,7 +241,7 @@ $('.ui.search').search({
           response.results.push({
             title       : item.name,
             description : item.region_name,
-            url         : ""
+            url         : item.url
           });
         });
         console.log(response)
@@ -233,7 +257,10 @@ $('.ui.search').search({
 
   $('.rating').rating({
       initialRating: 2,
-      maxRating: 4
+      maxRating: 4,
+      onRate: function(value){
+        console.log("ranked", value)
+      }
   });
   $('.ui.dropdown').dropdown();
 });

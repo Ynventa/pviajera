@@ -1,7 +1,7 @@
 .ui.breadcrumb
 	= link_to "Inicio", root_path, {class: "section"}
 	%i.right.chevron.icon.divider
-	= link_to "Actividades", activity_path, {class: "section"}
+	= link_to "Actividades", activity_index_path, {class: "section"}
 	%i.right.chevron.icon.divider
 	.active.section
 		= @activity.name

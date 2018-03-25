@@ -1,11 +1,14 @@
 .ui.grid.attached.gallery
-	%a.twelve.wide.column{href:"javascript:void(0)", style: "background-image: url(#{asset_path @client.image.url(:large)}); background-repeat: no-repeat; background-size: cover; background-position: center", data: {imageindex: "0"}}
-	.four.wide.column
-		.ui.grid.attached
-			- @client.client_images.any?
-			- @client.client_images.each_with_index do |image, i|
-				- image = asset_path image.image.url(:medium)
-				%a.eight.wide.column{href:"javascript:void(0)", style: "background-image: url(#{image}); background-repeat: no-repeat; background-size: cover; background-position: center", data: {imageindex: "#{i+1}"}}
+	- if @client.client_images.any?
+		%a.sixteen.wide.tablet.twelve.wide.computer.column{href:"javascript:void(0)", style: "background-image: url(#{asset_path @client.image.url(:large)}); background-repeat: no-repeat; background-size: cover; background-position: center", data: {imageindex: "0"}}
+		.eight.wide.mobile.sixteen.wide.tablet.four.wide.computer.column
+			.ui.grid.attached
+				- @client.client_images.each_with_index do |image, i|
+					- image = asset_path image.image.url(:medium)
+					%a.eight.wide.column{href:"javascript:void(0)", style: "background-image: url(#{image}); background-repeat: no-repeat; background-size: cover; background-position: center", data: {imageindex: "#{i+1}"}}
+
+	- else
+		%a.sixteen.wide.computer.column{href:"javascript:void(0)", style: "background-image: url(#{asset_path @client.image.url(:large)}); background-repeat: no-repeat; background-size: cover; background-position: center", data: {imageindex: "0"}}
 
 .ui.divider
 
@@ -38,14 +41,15 @@
 	.ui.stacked.segment
 		.ui.embed.video{data:{url: @client.youtube_embed}}
 
-.ui.stacked.segment
-	#map
+- if @client.google_map.present?
+	.ui.stacked.segment
+		#map
 
 .ui.modal.modal_gallery
 	%i.close.icon
 	.image.content
 		.ui.massive.image
-			= image_tag "https://semantic-ui.com/images/avatar2/large/rachel.png", {class: "", id: "gallery_image"}
+			= image_tag "", {class: "", id: "gallery_image"}
 	.actions
 		.ui.button#prev Anterior
 		.ui.button#next Siguiente
@@ -59,7 +63,6 @@
 	$(function(){
 		$("a.column").click(function(){
 			img = parseInt($(this).attr("data-imageindex"));
-			console.log(img, images_gallery[current_image])
 			current_image=img
 			$("#gallery_image").attr("src", images_gallery[current_image])
 			$('.ui.modal.modal_gallery').modal('show');
