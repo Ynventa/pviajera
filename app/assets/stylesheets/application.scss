@@ -15,6 +15,7 @@
  *= require font-awesome
  */
 @import "semantic-ui";
+@import "colors";
 
 body{
  	background-image: asset-url("bg.png");
@@ -94,8 +95,25 @@ body{
 	.form{
 		.field{
 			label{
-				color: #FFFFFF;
+				color: $white;
 			}
 		}			
+	}
+}
+
+.destinations{
+	h4{
+		text-align: left
+	}
+}
+
+.ui.popup.popup_destinations{
+	background: $orange_trademark;
+	color: $white;
+	&:before{
+		background: $orange_trademark;
+	}
+	a{
+		color: $white;
 	}
 }
