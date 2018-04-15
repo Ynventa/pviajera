@@ -2,7 +2,7 @@ module V1
   class CitiesController < ApplicationController
     def index
       if params[:query]
-        cities = City.where("name ILIKE ?", "%#{params[:query]}%")
+        cities = City.where("unaccent(name) ILIKE unaccent(?)", "%#{params[:query]}%")
       else
         cities = City.all
       end

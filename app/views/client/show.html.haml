@@ -22,7 +22,7 @@
 
 %h2.ui.header
 	.content 
-		= @client.name
+		= "#{@client.name} (#{@client.city.name})"
 		.sub.header
 			.ui.star.rating{data:{rating:3, "max-rating": 5 }}
 
