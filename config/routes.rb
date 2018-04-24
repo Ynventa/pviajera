@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 	devise_for :users
 	root 'welcome#index'
 
-	resources :welcome 
+	resources :welcome, only: [:index]
 	resources :activity, only: [:index, :show] do
 		resources :city, only: [:index, :show]
 	end

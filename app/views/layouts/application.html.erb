@@ -34,7 +34,6 @@
                       <% end %>
                       </div>
                     </div>
-                    <%= link_to "Promociones", "#", class: "ui item" %>
                     <%= link_to "Contacto", "#", class: "ui item" %>
 
                   </div>
@@ -56,7 +55,6 @@
                     <% end %>
                   </div>
                 </div>
-                <%= link_to "Promociones", "#", class: "ui item tablet only computer only grid" %>
                 <%= link_to "Contacto", "#", class: "ui item tablet only computer only grid" %>
               </div>
             </div>
@@ -82,56 +80,13 @@
             <div class="ui divider"></div>
 
             <div class="ui link cards">
-              <% if @banners.present? %>
-                <% @banners[0..1].each do |banner| %>
-                  <div class="card">
-                    <div class="image">
-                      <%= image_tag banner[:image], {class: ""} %>
-                    </div>
-                    <div class="content">
-                      <div class="header"><%= banner[:title] %></div>
-                      <div class="description">
-                        <div><i class="phone volume icon"></i><%= banner[:contact][:phone] %></div>
-                        <div><i class="at icon"></i><%= banner[:contact][:email] %></div>
-                        <div><i class="map marker alternate icon"></i><%= banner[:contact][:street] %></div>
-                        <div><i class="globe icon"></i><%= banner[:contact][:web] %></div>
-                        <div><i class="facebook icon"></i><%= banner[:contact][:facebook] %></div>
-                      </div>
-
-                    </div>
-                  </div>
-                <% end %>
-              <% end %>
+              <%= render partial: "shared/left-banner", locals: {banners: @banners} %>
             </div>
 
 
           </div>
 
-<!--
-          <div class="contact-form">
-            <form class="ui tiny form">
-              <div class="field">
-                <label>Nombre completo</label>
-                <input type="text" name="first-name" placeholder="Nombre completo">
-              </div>
-              <div class="field">
-                <label>Tel&eacute;fono</label>
-                <input type="text" name="last-name" placeholder="Tel&eacute;fono">
-              </div>
-              <div class="field">
-                <label>Email</label>
-                <input type="text" name="last-name" placeholder="Email">
-              </div>
-              <div class="field">
-                <label>Mensage</label>
-                <textarea rows="2"></textarea>
-              </div>
-              <button class="ui button" type="submit">Enviar</button>
-            </form>
-
-          </div>
--->
-            
+          
 
         </div>
         <div class='sixteen wide mobile ten wide tablet ten wide computer column center-panel'>
@@ -144,26 +99,7 @@
 
 
 <div class="ui link cards">
-  <% if @banners.present? %>
-    <% @banners[1..-1].each do |banner| %>
-      <div class="card">
-        <div class="image">
-          <%= image_tag banner[:image], {class: ""} %>
-        </div>
-        <div class="content">
-          <div class="header"><%= banner[:title] %></div>
-          <div class="description">
-            <div><i class="phone volume icon"></i><%= banner[:contact][:phone] %></div>
-            <div><i class="at icon"></i><%= banner[:contact][:email] %></div>
-            <div><i class="map marker alternate icon"></i><%= banner[:contact][:street] %></div>
-            <div><i class="globe icon"></i><%= banner[:contact][:web] %></div>
-            <div><i class="facebook icon"></i><%= banner[:contact][:facebook] %></div>
-          </div>
-
-        </div>
-      </div>
-    <% end %>
-  <% end %>
+  <%= render partial: "shared/right-banner", locals: {banners: @banners} %>
 </div>
 
 

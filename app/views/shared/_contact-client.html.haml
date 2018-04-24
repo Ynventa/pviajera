@@ -1,0 +1,21 @@
+.description
+	- if client.phone.present?
+		%div
+			%i.phone.volume.icon
+			= client.phone
+	- if client.email.present?
+		%div
+			%i.at.icon
+			= client.email
+	- if client.google_map.present?
+		%div
+			%i.map.marker.alternate.icon
+			= client.google_map["formatted_address"]
+	- if client.web.present?
+		%div
+			%i.globe.icon
+			= client.web
+	- if client.facebook.present?
+		%div
+			%i.facebook.icon
+			= client.facebook

@@ -31,6 +31,8 @@ es:
       activity: Actividad
       client: Cliente
       client_images: Imagenes de cliente
+      highlight: Destacados
+      highlights_tracking: Tracking de destacados
   devise:
     confirmations:
       confirmed: Tu cuenta ha sido confirmada satisfactoriamente.

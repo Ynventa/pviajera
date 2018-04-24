@@ -26,17 +26,44 @@ RailsAdmin.config do |config|
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
-    new
+    new do
+      except ['HighlightsTracking']
+    end
     export
     bulk_delete
     show
-    edit
+    edit do
+      except ['HighlightsTracking']
+    end
     delete
     show_in_app
 
     ## With an audit adapter, you can add:
     # history_index
     # history_show
+  end
+
+  config.model 'Highlight' do
+    edit do
+      field :client
+      field :date_start do
+        strftime_format '%d-%m-%Y'
+      end
+      field :date_end do
+        strftime_format '%d-%m-%Y'
+      end
+      field :status
+    end
+    list do
+      field :client
+      field :date_start do
+        strftime_format '%d-%m-%Y'
+      end
+      field :date_end do
+        strftime_format '%d-%m-%Y'
+      end
+      field :status
+    end
   end
 
   config.model 'Client' do
