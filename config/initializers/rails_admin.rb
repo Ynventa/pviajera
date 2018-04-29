@@ -43,6 +43,22 @@ RailsAdmin.config do |config|
     # history_show
   end
 
+  config.model 'Document' do
+    edit do
+      field :title 
+      field :text, :ck_editor
+    end
+    list do
+      field :title
+      field :created_at do
+        strftime_format '%d-%m-%Y'
+      end
+      field :updated_at do
+        strftime_format '%d-%m-%Y'
+      end
+    end
+  end
+
   config.model 'Highlight' do
     edit do
       field :client

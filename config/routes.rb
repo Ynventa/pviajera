@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
 	mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 	devise_for :users
 	root 'welcome#index'
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
 	resources :client, only: [:index, :show]
 	resources :region, only: [:index, :show]
 	resources :city, only: [:index, :show]
+	resources :document, only: [:show]
 
 	namespace :v1 do
 		resources :cities, only: [:index]

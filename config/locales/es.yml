@@ -33,6 +33,7 @@ es:
       client_images: Imagenes de cliente
       highlight: Destacados
       highlights_tracking: Tracking de destacados
+      document: Documentos
   devise:
     confirmations:
       confirmed: Tu cuenta ha sido confirmada satisfactoriamente.

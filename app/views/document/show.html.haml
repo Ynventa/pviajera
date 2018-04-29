@@ -1,0 +1,12 @@
+.ui.breadcrumb
+  = link_to "Inicio", root_path, {class: "section"}
+  %i.right.chevron.icon.divider
+  .active.section
+    = @document.title
+
+
+%h2.ui.header
+  .content 
+    = @document.title
+.content
+  = raw @document.text
