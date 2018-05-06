@@ -8,5 +8,6 @@ class ActivityController < ApplicationController
 	def show
 		@activity = Activity.find(params[:id])
 		@clients = Client.where(activity_id: params[:id])
+    @cities = @activity.clients.map{|client| [client.city.id, client.city.name]}.uniq
 	end
 end

@@ -10,11 +10,18 @@
 %h2.ui.header
 	.content 
 		= @activity.name
+	%div
+		.teal.large.ui.buttons.city-selection
+			%button.ui.button{data: {city: 0}}
+				Todas las ciudades
+			- @cities.each do |city| 
+				%button.ui.button{data: {city: city[0]}}
+					= city[1]
 
 - if @clients.any?
 	.ui.grid.attached
 		- @clients.each do |client|
-			.sixteen.wide.mobile.eight.wide.tablet.eight.wide.computer.column
+			.sixteen.wide.mobile.eight.wide.tablet.eight.wide.computer.column.card-client{data: {city: client.city.id}}
 				.ui.link.cards
 					.ui.card.fluid
 						%a.content{href: client_path(client.id)}
@@ -27,3 +34,22 @@
 							.ui.star.rating{data:{rating: (0...5).to_a.sample, "max-rating": 5 }}
 - else
 	= render partial: "shared/no-results"
+
+:javascript
+	$(function(){
+		$(".city-selection button").click(function(){
+			$(".card-client").hide();
+			city = $(this).data("city");
+			console.log(city);
+			$(".card-client").each(function(e){
+				console.log($(this).data("city"), city);
+				if(city == 0){
+					$(".card-client").show();
+				} else {
+					if( $(this).data("city") == city ){
+						$(this).show();
+					}
+				}
+			})
+		})
+	})

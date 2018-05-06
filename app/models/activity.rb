@@ -14,7 +14,9 @@
 
 class Activity < ApplicationRecord
 	validates :name, presence: true
-	validates :name, length: { in: 2..200 }	
+	validates :name, length: { in: 2..200 }
+
+  has_many :clients
 
 	has_attached_file :image, styles: { large: "1000x565>", medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
 	validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
