@@ -34,6 +34,7 @@ es:
       highlight: Destacados
       highlights_tracking: Tracking de destacados
       document: Documentos
+      contact: Contactos
   devise:
     confirmations:
       confirmed: Tu cuenta ha sido confirmada satisfactoriamente.

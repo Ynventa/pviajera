@@ -10,7 +10,7 @@
 %h2.ui.header
 	.content 
 		= @title
-- if @clients
+- if @clients.any?
 	.ui.grid.attached
 		- @clients.each do |client|
 			.sixteen.wide.mobile.eight.wide.tablet.eight.wide.computer.column
@@ -27,4 +27,5 @@
 						.extra 
 							Rating:
 							.ui.star.rating{data:{rating: (0...5).to_a.sample, "max-rating": 5 }}
-
+- else
+	= render partial: "shared/no-results"

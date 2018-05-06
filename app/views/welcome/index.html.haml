@@ -12,7 +12,7 @@
 	- @actividades.each do |act|
 		.sixteen.wide.mobile.eight.wide.tablet.eight.wide.computer.column
 			.ui.link.cards
-				.ui.card.fluid
+				.ui.card.fluid.highlight-home
 					%a.content{href: activity_path(act.id)}
 						%h3.ui.header
 							= act[:name]

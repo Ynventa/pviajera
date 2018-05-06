@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 	resources :region, only: [:index, :show]
 	resources :city, only: [:index, :show]
 	resources :document, only: [:show]
+	resources :contacts
 
 	namespace :v1 do
 		resources :cities, only: [:index]

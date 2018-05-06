@@ -1,0 +1,23 @@
+.ui.breadcrumb
+  = link_to "Inicio", root_path, {class: "section"}
+  %i.right.chevron.icon.divider
+  .active.section
+    Regiones
+
+
+%h2.ui.header
+  .content 
+    Regiones
+
+.ui.grid.attached
+  - @regiones.each do |region|
+    .sixteen.wide.mobile.eight.wide.tablet.eight.wide.computer.column
+      .ui.link.cards
+        .ui.card.fluid
+          %a.content{href: region_path(region.id)}
+            %h3.ui.header
+              = region.name
+          %a.image{href: region_path(region.id)}
+            = image_tag region.image.url(:medium)
+
+

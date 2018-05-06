@@ -1,0 +1,28 @@
+.ui.breadcrumb
+  = link_to "Inicio", root_path, {class: "section"}
+  %i.right.chevron.icon.divider
+  .active.section
+    Contacto
+
+%h2.ui.header
+  .content 
+    Contacto
+
+= render partial: "shared/error-messages"
+
+= form_for @contact, html: {class: "ui form"} do |f|
+  .field
+    = f.label :Nombre
+    = f.text_field :name
+  .field
+    = f.label :Email
+    = f.text_field :email
+  .field
+    = f.label :Teléfono
+    = f.text_field :phone
+  .field
+    = f.label :Comentario
+    = f.text_area :comment
+
+  = f.submit "Enviar"
+

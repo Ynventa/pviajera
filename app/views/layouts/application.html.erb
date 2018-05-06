@@ -25,6 +25,17 @@
                     <%= link_to "Inicio", root_path, class: "item" %>
                     <div class="item">
                       <i class="dropdown icon"></i>
+                      <span class="text">Encontrá tu destino</span>
+                      <div class="menu">
+                      <% if @regions.present? %>
+                        <% @regions.each do |region| %>
+                          <%= link_to region[:name], region_path(region.id), class: "item" %>
+                        <% end %>
+                      <% end %>
+                      </div>
+                    </div>
+                    <div class="item">
+                      <i class="dropdown icon"></i>
                       <span class="text">Actividades</span>
                       <div class="menu">
                       <% if @actividades.present? %>
@@ -34,7 +45,7 @@
                       <% end %>
                       </div>
                     </div>
-                    <%= link_to "Contacto", "#", class: "ui item" %>
+                    <%= link_to "Contacto", new_contact_path, class: "ui item" %>
 
                   </div>
                 </div>
@@ -55,7 +66,7 @@
                     <% end %>
                   </div>
                 </div>
-                <%= link_to "Contacto", "#", class: "ui item tablet only computer only grid" %>
+                <%= link_to "Contacto", new_contact_path, class: "ui item tablet only computer only grid" %>
               </div>
             </div>
 
@@ -90,8 +101,6 @@
 
         </div>
         <div class='sixteen wide mobile ten wide tablet ten wide computer column center-panel'>
-          <div class="notice"><%= notice %></div>
-          <div class="alert"><%= alert %></div>
           <%= yield %>
         </div>
         <div class='three wide computer only column'>

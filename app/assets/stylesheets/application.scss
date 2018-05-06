@@ -18,7 +18,7 @@
 @import "colors";
 
 body{
- 	background-image: asset-url("bg.png");
+ 	background-image: asset-url("bg-sand.jpg");
  	background-repeat: no-repeat;
  	background-attachment: fixed;
  	background-size: cover;
@@ -43,6 +43,9 @@ body{
 			}
 		}
 		&.menu{
+			font-size: 1.2rem;
+			margin-top: 0.2rem;
+			margin-bottom: 0.2rem;
 			a.item, .dropdown.item{
 				color: #FFFFFF;
 				font-weight: bold;
@@ -117,3 +120,23 @@ body{
 		color: $white;
 	}
 }
+
+.ui{
+	&.card{
+		&.highlight-home{
+			border-left: solid $lightgreen_trademark 6px;
+			&:hover{
+				border-left: solid $lightgreen_trademark 6px !important;
+			}
+		}
+	}
+	.card{
+		&.banner-card{
+			border-left: solid $blue_trademark 6px;
+			&:hover{
+				border-left: solid $blue_trademark 6px !important;
+			}
+		}
+	}
+}
+

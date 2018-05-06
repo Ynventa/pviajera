@@ -2,6 +2,7 @@ class RegionController < ApplicationController
 	before_action :load_vars
 	
 	def index
+    @regiones = Region.all
 	end
 
 	def show
