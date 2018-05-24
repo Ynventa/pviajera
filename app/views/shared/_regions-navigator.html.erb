@@ -1,29 +1,31 @@
 <div class="target-menu-popup"></div>
 <div class="ui fluid popup transition hidden">
   <div class="ui equal width divided grid">
-    <% regions.each do |region| %>
-      <div class="column">
-        <div class="ui basic segment">
-          <h4 class="ui header"><%= region.name %></h4>
-          <div><%#= region.description %></div>
-          <div><%= image_tag region.image.url(:medium), class: "ui fluid image" %></div>
+    <% if regions %>
+      <% regions.each do |region| %>
+        <div class="column">
+          <div class="ui basic segment">
+            <h4 class="ui header"><%= region.name %></h4>
+            <div><%#= region.description %></div>
+            <div><%= image_tag region.image.url(:medium), class: "ui fluid image" %></div>
 
-          <div class="ui text menu">
-            <a class="desination ui green button">
-              Elija una ciudad
-            </a>
-            <div class="ui fluid popup transition hidden popup_destinations">
-              <% region.cities.each do |city| %>
-                <a href="<%= city_path(city.id) %>">
-                  <i class="angle right icon"></i>
-                  <%= city.name %>
-                </a><br>
-              <% end %>
+            <div class="ui text menu">
+              <a class="desination ui green button">
+                Elija una ciudad
+              </a>
+              <div class="ui fluid popup transition hidden popup_destinations">
+                <% region.cities.each do |city| %>
+                  <a href="<%= city_path(city.id) %>">
+                    <i class="angle right icon"></i>
+                    <%= city.name %>
+                  </a><br>
+                <% end %>
+              </div>
             </div>
-          </div>
 
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>
