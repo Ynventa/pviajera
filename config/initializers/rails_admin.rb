@@ -8,6 +8,10 @@ RailsAdmin.config do |config|
   end
   config.current_user_method(&:current_user)
 
+  config.authorize_with do
+    redirect_to main_app.root_path unless current_user.admin?
+  end
+
   ## == Cancan ==
   # config.authorize_with :cancan
 
@@ -107,6 +111,17 @@ RailsAdmin.config do |config|
       field :youtube_url
       field :image
       field :client_images
+    end
+  end
+
+  config.model 'User' do
+    edit do
+      field :email
+      field :name
+      field :lastname
+      field :admin
+      field :password
+      field :password_confirmation
     end
   end
 

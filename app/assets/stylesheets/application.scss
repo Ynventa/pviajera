@@ -57,6 +57,10 @@ body{
 				}
 				.menu{
 					background: #d8b228;
+					&.user-menu{
+						background: rgba(255, 255, 255, 0.5);
+						text-align: right;
+					}
 				}
 			}
 		}

@@ -48,6 +48,18 @@
                       - @actividades.each do |act|
                         = link_to act[:name], activity_path(act.id), class: "ui item"
                 = link_to "Contacto", new_contact_path, class: "ui item tablet only computer only grid #{controller_name == 'contacts' ? 'active' : ''}"
+                - if user_signed_in?
+                  .ui.dropdown.item.tablet.only.computer.only.grid
+                    = current_user.name
+                    %i.dropdown.icon
+                    .menu.user-menu
+                      = link_to "Datos personales", edit_user_registration_path, class: "ui item"
+                      - if current_user.admin? 
+                        = link_to "Administrador", rails_admin.dashboard_path, class: "ui item", target: "_blank"
+                      = link_to "Cerrar sesión", destroy_user_session_path, method: :delete, class: "ui item"
+                - else
+                  = link_to "Ingresar", user_session_path, class: "ui item tablet only computer only grid #{controller_name == 'sessions' ? 'active' : ''}"
+
       = render partial: "shared/regions-navigator", locals: {regions: @regions}
       .ui.divider
       .ui.grid.padded
