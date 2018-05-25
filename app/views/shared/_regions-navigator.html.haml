@@ -1,0 +1,19 @@
+.target-menu-popup
+.ui.fluid.popup.transition.hidden
+  .ui.equal.width.divided.grid
+    - if regions
+      - regions.each do |region|
+        .column
+          .ui.basic.segment
+            %h4.ui.header= region.name
+            %div
+            %div= image_tag region.image.url(:medium), class: "ui fluid image"
+            .ui.text.menu
+              %a.desination.ui.green.button
+                Elija una ciudad
+              .ui.fluid.popup.transition.hidden.popup_destinations
+                - region.cities.each do |city|
+                  %a{href: "#{city_path(city.id)}"}
+                    %i.angle.right.icon
+                    = city.name
+                  %br/

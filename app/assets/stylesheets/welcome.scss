@@ -19,6 +19,10 @@
 	.image{
 		margin: 50px auto;
 	}
+	border: solid 10px #FFFFFF;
+	-webkit-box-shadow: inset 0px 0px 34px 8px rgba(0,0,0,0.75);
+	-moz-box-shadow: inset 0px 0px 34px 8px rgba(0,0,0,0.75);
+	box-shadow: inset 0px 0px 34px 8px rgba(0,0,0,0.75);
 }
 
 .ui.grid{

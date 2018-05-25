@@ -1,0 +1,16 @@
+.ui.fluid.vertical.text.menu
+  %h3.ui.header Elegí una ciudad
+  .ui.fluid.search
+    .ui.icon.input
+      %input.prompt{placeholder: "Buscar ciudade...", type: "text"}/
+      %i.search.icon
+    .results
+  .ui.divider
+- if controller_name == "welcome"
+  .ui.grid
+    .tablet.only.column.computer.only.column
+      .ui.vertical.menu.inverted.fluid
+        - if @regions
+          - @regions.each do |region|
+            %a.item{href: region_path(region.id)}
+              = region.name

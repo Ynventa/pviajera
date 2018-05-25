@@ -1,7 +1,7 @@
 .ui.grid.attached.gallery
 	- if @client.client_images.any?
-		%a.sixteen.wide.tablet.twelve.wide.computer.column{href:"javascript:void(0)", style: "background-image: url(#{asset_path @client.image.url(:large)}); background-repeat: no-repeat; background-size: cover; background-position: center", data: {imageindex: "0"}}
-		.eight.wide.mobile.sixteen.wide.tablet.four.wide.computer.column
+		%a.sixteen.wide.mobile.sixteen.wide.tablet.twelve.wide.computer.column{href:"javascript:void(0)", style: "background-image: url(#{asset_path @client.image.url(:large)}); background-repeat: no-repeat; background-size: cover; background-position: center", data: {imageindex: "0"}}
+		.sixteen.wide.mobile.sixteen.wide.tablet.four.wide.computer.column
 			.ui.grid.attached
 				- @client.client_images.each_with_index do |image, i|
 					- image = asset_path image.image.url(:medium)

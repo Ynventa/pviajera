@@ -18,7 +18,7 @@
 @import "colors";
 
 body{
- 	background-image: asset-url("bg-sand.jpg");
+ 	background-image: asset-url("bg-sea2.jpg");
  	background-repeat: no-repeat;
  	background-attachment: fixed;
  	background-size: cover;
@@ -33,7 +33,6 @@ body{
 }
 
 .header-top{
-	background: #f69820;
 	color: #999999;
 	text-align: right;
 	.ui{
@@ -43,13 +42,17 @@ body{
 			}
 		}
 		&.menu{
-			font-size: 1.2rem;
+			font-size: 1.1rem;
 			margin-top: 0.2rem;
 			margin-bottom: 0.2rem;
 			a.item, .dropdown.item{
 				color: #FFFFFF;
 				font-weight: bold;
 				&:hover{
+					color: #FFFFFF;
+				}
+				&.active{
+					background: rgba(0, 0, 0, 0.5);
 					color: #FFFFFF;
 				}
 				.menu{
