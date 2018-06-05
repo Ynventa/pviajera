@@ -1,34 +1,44 @@
 .ui.breadcrumb
-	= link_to "Inicio", root_path, {class: "section"}
-	%i.right.chevron.icon.divider
-	= link_to "Actividades", activity_index_path, {class: "section"}
-	%i.right.chevron.icon.divider
-	.active.section
-		= @title
+  = link_to "Inicio", root_path, {class: "section"}
+  %i.right.chevron.icon.divider
+  = link_to "Actividades", activity_index_path, {class: "section"}
+  %i.right.chevron.icon.divider
+  .active.section
+    = @title
 
 
 %h2.ui.header
-	.content 
-		= @title
-	.ui.segment
-	  %p
-	  	= @city.description
+  .content 
+    = @title
+- if @city.image || !@city.description.empty?
+  %div{style: "margin-bottom: 20px"}
+    .ui.card.fluid
+      - if @city.image
+        .image
+          = image_tag @city.image.url(:large)
+      - unless @city.description.empty?
+        .content
+          .description
+            = raw @city.description.to_s.gsub(/\n/, '<br/>')
+
+
+
 - if @clients.any?
-	.ui.grid.attached
-		- @clients.each do |client|
-			.sixteen.wide.mobile.eight.wide.tablet.eight.wide.computer.column
-				.ui.link.cards
-					.ui.card.fluid
-						%a.content{href: client_path(client.id)}
-							%h3.ui.header
-								= client.name
-						%a.image{href: client_path(client.id)}
-							= image_tag client.image.url(:medium)
-						%a.content{href: client_path(client.id)}
-							.description
-								= reduce_text client.description
-						.extra 
-							Rating:
-							.ui.star.rating{data:{rating: (0...5).to_a.sample, "max-rating": 5 }}
+  .ui.grid.attached
+    - @clients.each do |client|
+      .sixteen.wide.mobile.eight.wide.tablet.eight.wide.computer.column
+        .ui.link.cards
+          .ui.card.fluid
+            %a.content{href: client_path(client.id)}
+              %h3.ui.header
+                = client.name
+            %a.image{href: client_path(client.id)}
+              = image_tag client.image.url(:medium)
+            %a.content{href: client_path(client.id)}
+              .description
+                = reduce_text client.description
+            .extra 
+              Rating:
+              .ui.star.rating{data:{rating: (0...5).to_a.sample, "max-rating": 5 }}
 - else
-	= render partial: "shared/no-results"
+  = render partial: "shared/no-results"
