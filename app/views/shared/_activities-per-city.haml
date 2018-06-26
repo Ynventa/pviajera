@@ -1,6 +1,6 @@
 - if @clients.any?
   .ui.styled.accordion
-    - activities = Client.where(city_id: 2).map{|cl| cl.activity}.uniq
+    - activities = @clients.map{|cl| cl.activity}.uniq
     - activities.each do |act|
       .title
         %i.dropdown.icon
