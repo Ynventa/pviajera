@@ -72,6 +72,7 @@ RailsAdmin.config do |config|
       field :date_end do
         strftime_format '%d-%m-%Y'
       end
+      field :image
       field :status
     end
     list do

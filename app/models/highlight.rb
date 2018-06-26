@@ -16,9 +16,11 @@
 class Highlight < ApplicationRecord
 	validates :client_id, :date_start, :date_end, :status, presence: true
 
+	has_attached_file :image, styles: { normal: "400x400>" }, default_url: "/images/:style/missing.png"
+	validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+
 	belongs_to :client
 	has_many :highlights_trackings
-
 
 	enum status: [:stoped, :paused, :running]
 	def status_enum

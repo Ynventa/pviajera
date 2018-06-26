@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180525035212) do
+ActiveRecord::Schema.define(version: 20180624233233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,11 +90,15 @@ ActiveRecord::Schema.define(version: 20180525035212) do
     t.integer  "client_id"
     t.date     "date_start"
     t.date     "date_end"
-    t.integer  "status",     limit: 2
+    t.integer  "status",             limit: 2
     t.integer  "views"
     t.integer  "clicks"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "highlights_trackings", force: :cascade do |t|

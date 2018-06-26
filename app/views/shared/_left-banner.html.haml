@@ -2,8 +2,12 @@
   - if banners.any?
     - banners[0..2].each do |banner|
       .card.banner-card
-        %a.image{href: "#{client_path(banner.client.id)}"}
-          = image_tag banner.client.image.url(:medium), {class: ""}
+        - if banner.image.exists?
+          %a.image{href: "#{client_path(banner.client.id)}"}
+            = image_tag banner.image.url(:normal), {class: ""}
+        - else
+          %a.image{href: "#{client_path(banner.client.id)}"}
+            = image_tag banner.client.image.url(:medium), {class: ""}
         %a.content{href: "#{client_path(banner.client.id)}"}
           .header= banner.client.name
           = render partial: "shared/contact-client", locals: {client: banner.client}

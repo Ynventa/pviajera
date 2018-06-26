@@ -87,6 +87,9 @@
             - else
               .sixteen.wide.mobile.four.wide.tablet.four.wide.computer.column.left-menu
                 = render partial: "shared/left-side"
+                - if controller_name == "city"
+                  .ui.link.cards
+                    = render partial: "shared/activities-per-city"
                 - if controller_name != "client"
                   .ui.link.cards
                     = render partial: "shared/left-banner", locals: {banners: @banners}
