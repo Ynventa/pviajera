@@ -10,13 +10,13 @@
 %h2.ui.header
   .content 
     = @title
-- if @city.image.exists? || !@city.description.empty?
+- if @city.image.exists? || !@city.description.blank?
   %div{style: "margin-bottom: 20px"}
     .ui.card.fluid
       - if @city.image.exists?
         .image
           = image_tag @city.image.url(:large)
-      - unless @city.description.empty?
+      - unless @city.description.blank?
         .content
           .description
             = raw @city.description.to_s.gsub(/\n/, '<br/>')
