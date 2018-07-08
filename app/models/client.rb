@@ -54,7 +54,7 @@ class Client < ApplicationRecord
 
   def show_information
     info = ""
-    info = info + "<div><i class='whatsapp icon'></i> #{self.whatsapp}</div>" if self.whatsapp
+    info = info + "<div><i class='whatsapp icon'></i> #{self.whatsapp}</div>" if self.whatsapp?
     info = info + "<div><i class='phone volume icon'></i> #{self.phone}</div>" if self.phone?
     info = info + "<div><i class='at icon'></i> #{self.email}</div>" if self.email?
     info = info + "<div><i class='globe icon'></i> <a href='#{self.web}' target='_blank'>#{self.web}</a></div>" if self.web?
