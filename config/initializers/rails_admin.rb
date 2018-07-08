@@ -47,6 +47,20 @@ RailsAdmin.config do |config|
     # history_show
   end
 
+  config.model 'Activity' do
+    list do
+      field :name
+      field :image
+      field :clients
+      field :created_at do
+        strftime_format '%d-%m-%Y'
+      end
+      field :updated_at do
+        strftime_format '%d-%m-%Y'
+      end
+    end
+  end
+
   config.model 'Document' do
     edit do
       field :title 
@@ -54,6 +68,20 @@ RailsAdmin.config do |config|
     end
     list do
       field :title
+      field :created_at do
+        strftime_format '%d-%m-%Y'
+      end
+      field :updated_at do
+        strftime_format '%d-%m-%Y'
+      end
+    end
+  end
+
+  config.model 'City' do
+    list do
+      field :name
+      field :region
+      field :province
       field :created_at do
         strftime_format '%d-%m-%Y'
       end
@@ -126,4 +154,66 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model 'Excursion' do
+    edit do
+      field :title
+      field :description
+      field :image
+      field :html, :ck_editor
+      field :location_label do
+        read_only true
+        label "Dirección"
+      end
+      field :google_map, :google_map do
+        google_api_key 'AIzaSyBkEq2XlKAtX1ASfflNaRTK9cX4c0hg0JA'
+        default_latitude -32.9535803
+        default_longitude -60.7221068
+        default_zoom_level 13
+      end
+      field :city
+      field :phone
+      field :whatsapp
+      field :email
+      field :web
+      field :facebook
+      field :instagram
+      field :youtube_url
+    end
+    list do
+      field :title
+      field :location
+      field :image
+      field :created_at do
+        strftime_format '%d-%m-%Y'
+      end
+      field :updated_at do
+        strftime_format '%d-%m-%Y'
+      end
+    end
+  end
+
+  config.model 'Province' do
+    list do
+      field :name
+      field :created_at do
+        strftime_format '%d-%m-%Y'
+      end
+      field :updated_at do
+        strftime_format '%d-%m-%Y'
+      end
+    end
+  end
+
+  config.model 'Region' do
+    list do
+      field :name
+      field :image
+      field :created_at do
+        strftime_format '%d-%m-%Y'
+      end
+      field :updated_at do
+        strftime_format '%d-%m-%Y'
+      end
+    end
+  end
 end

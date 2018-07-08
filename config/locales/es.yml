@@ -1,11 +1,28 @@
 es:
   store:
     title: "esto es un titulo"
+  attributes:
+    name: Nombre
+    description: Descripción
+    city: Ciudad
+    email: Correo electrónico
+    phone: Teléfono
+    message: Mensaje
+    cities: Ciudades
+    image: Imagen
+    activity: Actividad
+    client_images: Imágenes del cliente
+    client: Cliente
+    clients: Clientes
+    province: Provincia
+    location: Ubicación
+    created_at: Fecha de creación
+    updated_at: Última actualización
   activerecord:
     attributes:
       user:
+        lastname: Apellido
         current_password: Contraseña actual
-        email: Correo electrónico
         password: Contraseña
         password_confirmation: Confirmación de la contraseña
         remember_me: Recordarme
@@ -14,9 +31,6 @@ es:
       contact:
         first_name: Primer nombre
         area_code: Código de área
-        email: Correo electrónico
-        phone: Teléfono
-        message: Mensaje
       advertising:
         title: Título
     models:
@@ -35,6 +49,7 @@ es:
       highlights_tracking: Tracking de destacados
       document: Documentos
       contact: Contactos
+      excursion: Excursiones
   devise:
     confirmations:
       confirmed: Tu cuenta ha sido confirmada satisfactoriamente.

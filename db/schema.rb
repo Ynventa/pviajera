@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180624233233) do
+ActiveRecord::Schema.define(version: 20180708185715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,21 @@ ActiveRecord::Schema.define(version: 20180624233233) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.text     "description"
+  end
+
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
+    t.index ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
   end
 
   create_table "client_images", force: :cascade do |t|
@@ -84,6 +99,27 @@ ActiveRecord::Schema.define(version: 20180624233233) do
     t.text     "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "excursions", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.text     "html"
+    t.text     "google_map"
+    t.integer  "city_id"
+    t.string   "phone"
+    t.string   "whatsapp"
+    t.string   "email"
+    t.string   "web"
+    t.string   "facebook"
+    t.string   "instagram"
+    t.string   "youtube_url"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "highlights", force: :cascade do |t|

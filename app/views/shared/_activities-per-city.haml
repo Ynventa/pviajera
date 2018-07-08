@@ -1,3 +1,12 @@
+- if @excursions.any?
+  %a.fluid.ui.animated.positive.button.excursion-button{href: "javascript:;"}
+    .visible.content
+      = "Excursiones en #{@title}"
+    .hidden.content
+      Descubrilas clickeando aquí
+
+  .ui.hidden.divider
+
 - if @clients.any?
   .ui.styled.accordion
     - activities = @clients.map{|cl| cl.activity}.uniq
@@ -10,6 +19,20 @@
           %p.transition.visible{style: "display: block !important;"}
             = link_to client.name, client_path(client)
 
+  .ui.hidden.divider
+
+- if @excursions.any?
+  .ui.modal.fullscreen
+    .header
+      = "Excursiones en #{@title}"
+    .scrolling.content
+      = render partial: "excursions", locals: {excursions: @excursions}
+
+  :javascript
+    $("a.excursion-button").click(function(){
+      $('.ui.fullscreen.modal').modal('show');
+    });
+
+
 :javascript
-  $('.ui.accordion')
-    .accordion();
+  $('.ui.accordion').accordion();

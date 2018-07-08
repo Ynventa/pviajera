@@ -1,12 +1,19 @@
 # == Schema Information
 #
-# Table name: clients
+# Table name: excursions
 #
 #  id                 :integer          not null, primary key
-#  name               :string
-#  description        :text
-#  activity_id        :integer
+#  title              :string
+#  description        :string
+#  html               :text
+#  google_map         :text
 #  city_id            :integer
+#  phone              :string
+#  whatsapp           :string
+#  email              :string
+#  web                :string
+#  facebook           :string
+#  instagram          :string
 #  youtube_url        :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
@@ -14,29 +21,23 @@
 #  image_content_type :string
 #  image_file_size    :integer
 #  image_updated_at   :datetime
-#  phone              :string
-#  whatsapp           :string
-#  email              :string
-#  web                :string
-#  facebook           :string
-#  instagram          :string
-#  google_map         :text
 #
 
-class Client < ApplicationRecord
-	validates :name, :activity_id, :city_id, presence: true
-	validates :name, length: { in: 2..200 }
+class Excursion < ApplicationRecord
+  validates :title, :city_id, presence: true
+  validates :title, length: { in: 2..200 }
   before_save :validate_http
 
   serialize :google_map, JSON
 
-	belongs_to :activity
-	belongs_to :city
+  belongs_to :city
 
-	has_attached_file :image, styles: { large: "1000x565>", medium: "400x400>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
-	validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+  has_attached_file :image, styles: { large: "1000x565>", medium: "400x400>", thumb: "3:2~" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
-  has_many :client_images, dependent: :destroy
+  def location
+    self.city.name
+  end
 
   def youtube_embed
     regex = /(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
@@ -64,7 +65,7 @@ class Client < ApplicationRecord
     info.html_safe
   end
 
-private
+  private
   def add_http_protocol(web)
     if web.present?
       /^http|^https/ =~ web ? web : "http://#{web}"

@@ -1,0 +1,19 @@
+.ui.cards
+  - excursions.each do |excursion|
+    .ui.card
+      .content
+        .header
+          = excursion.title
+      .image
+        = image_tag excursion.image.url(:medium)
+      .content
+        .description
+          = excursion.description
+        -#%a.content{href: region_path(region.id)}
+        -#  %h3.ui.header
+        -#    = region.name
+        -#%a.image{href: region_path(region.id)}
+        -#  = image_tag region.image.url(:medium)
+      .extra.content
+        = link_to "Conocé más", excursion_path(excursion), class: "ui button"
+

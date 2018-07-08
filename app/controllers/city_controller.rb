@@ -8,6 +8,7 @@ class CityController < ApplicationController
 		puts "#{params[:activity_id]} - #{params[:id]}"
 		@city = City.find(params[:id])
 		@activities_city = []
+		@excursions = Excursion.where(city_id: 2)
 		if params[:activity_id]
 			@clients = Client.where(city_id: params[:id], activity_id: params[:activity_id])
 			@activity = Activity.find(params[:activity_id])

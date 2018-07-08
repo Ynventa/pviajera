@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  
 	mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+	mount Ckeditor::Engine => '/ckeditor'
+
 	devise_for :users
 	root 'welcome#index'
 
@@ -13,10 +14,9 @@ Rails.application.routes.draw do
 	resources :city, only: [:index, :show]
 	resources :document, only: [:show]
 	resources :contacts
+	resources :excursions, only: [:index, :show]
 
 	namespace :v1 do
 		resources :cities, only: [:index]
 	end
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

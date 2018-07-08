@@ -1,0 +1,56 @@
+.ui.grid.attached.gallery
+  .sixteen.wide.computer.column{style: "background-image: url(#{asset_path @excursion.image.url(:large)}); background-repeat: no-repeat; background-size: cover; background-position: center", data: {imageindex: "0"}}
+
+.ui.divider
+
+.ui.breadcrumb
+  = link_to "Inicio", root_path, {class: "section"}
+  %i.right.chevron.icon.divider
+  = link_to @excursion.city.name, city_path(@excursion.city), {class: "section"}
+  %i.right.chevron.icon.divider
+  .active.section
+    = "Excursiones en #{@excursion.city.name}"
+
+%h2.ui.header
+  .content
+    = @excursion.title
+    .sub.header
+      .ui.star.rating{data:{rating:3, "max-rating": 5 }}
+
+- if @excursion.description.present? || @excursion.show_information.present?
+  .ui.grid.attached
+    - if @excursion.show_information.present?
+      .six.wide.column
+        .ui.stacked.segment
+          = @excursion.show_information
+    - if @excursion.description.present?
+      .ten.wide.column
+        .ui.stacked.segment
+          = @excursion.description
+
+- if @excursion.youtube_embed.present?
+  .ui.stacked.segment
+    .ui.embed.video{data:{url: @excursion.youtube_embed}}
+
+- if @excursion.google_map.present?
+  .ui.stacked.segment
+    #map
+
+
+:javascript
+  var location_map = #{@excursion.google_map.present? ? "{lat: #{@excursion.google_map["location"]["latitude"]}, lng: #{@excursion.google_map["location"]["longitude"]}}" : "{}"}
+  #{@excursion.google_map ? "
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 14,
+      center: location_map
+    });
+    var marker = new google.maps.Marker({
+      position: location_map,
+      map: map
+    });
+  }
+  ".html_safe : ""}
+
+- if @excursion.google_map
+  %script{:async => "", :defer => "", :src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyBkEq2XlKAtX1ASfflNaRTK9cX4c0hg0JA&callback=initMap"}
