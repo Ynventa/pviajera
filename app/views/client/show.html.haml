@@ -23,8 +23,8 @@
 %h2.ui.header
 	.content 
 		= "#{@client.name} (#{@client.city.name})"
-		.sub.header
-			.ui.star.rating{data:{rating:3, "max-rating": 5 }}
+		-#.sub.header
+		-#	.ui.star.rating{data:{rating:3, "max-rating": 5 }}
 
 - if @client.description.present? || @client.show_information.present?
 	.ui.grid.attached

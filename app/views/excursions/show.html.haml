@@ -14,8 +14,8 @@
 %h2.ui.header
   .content
     = @excursion.title
-    .sub.header
-      .ui.star.rating{data:{rating:3, "max-rating": 5 }}
+    -#.sub.header
+    -#  .ui.star.rating{data:{rating:3, "max-rating": 5 }}
 
 - if @excursion.description.present? || @excursion.show_information.present?
   .ui.grid.attached

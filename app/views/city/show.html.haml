@@ -37,8 +37,8 @@
             %a.content{href: client_path(client.id)}
               .description
                 = reduce_text client.description
-            .extra 
-              Rating:
-              .ui.star.rating{data:{rating: (0...5).to_a.sample, "max-rating": 5 }}
+            -#.extra
+            -#  Rating:
+            -#  .ui.star.rating{data:{rating: (0...5).to_a.sample, "max-rating": 5 }}
 - else
   = render partial: "shared/no-results"
