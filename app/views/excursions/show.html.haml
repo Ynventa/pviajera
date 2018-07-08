@@ -28,6 +28,10 @@
         .ui.stacked.segment
           = @excursion.description
 
+- if @excursion.html.present?
+  .ui.segment.html-content
+    = @excursion.html.html_safe
+
 - if @excursion.youtube_embed.present?
   .ui.stacked.segment
     .ui.embed.video{data:{url: @excursion.youtube_embed}}

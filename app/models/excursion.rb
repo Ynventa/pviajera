@@ -32,7 +32,7 @@ class Excursion < ApplicationRecord
 
   belongs_to :city
 
-  has_attached_file :image, styles: { large: "1000x565>", medium: "400x400>", thumb: "3:2~" }, default_url: "/images/:style/missing.png"
+  has_attached_file :image, styles: { large: "1000x565>", medium: "400x400>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   def location

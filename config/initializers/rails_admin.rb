@@ -78,6 +78,14 @@ RailsAdmin.config do |config|
   end
 
   config.model 'City' do
+    edit do
+      field :name
+      field :region
+      field :province
+      field :image
+      field :description
+      field :html, :ck_editor
+    end
     list do
       field :name
       field :region
