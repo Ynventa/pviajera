@@ -9,12 +9,12 @@ Rails.application.routes.draw do
 	resources :activity, only: [:index, :show] do
 		resources :city, only: [:index, :show]
 	end
-	resources :client, only: [:index, :show]
+	resources :client, only: [:show]
 	resources :region, only: [:index, :show]
-	resources :city, only: [:index, :show]
+	resources :city, only: [:show]
 	resources :document, only: [:show]
 	resources :contacts
-	resources :excursions, only: [:index, :show]
+	resources :excursions, only: [:show]
 
 	namespace :v1 do
 		resources :cities, only: [:index]
