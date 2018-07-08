@@ -28,7 +28,7 @@ set :puma_init_active_record, false  # Change to true if using ActiveRecord
 set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 
 # Make Capistrano symlink the public/system directory so that attachments survive new deployments
-set :linked_dirs, fetch(:linked_dirs, []).push('public/system')
+set :linked_dirs, fetch(:linked_dirs, []).push('public/system', 'public/ckeditor_assets')
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
