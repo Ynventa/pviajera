@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180708225600) do
+ActiveRecord::Schema.define(version: 20180719045509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(version: 20180708225600) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "description"
+    t.text     "html"
+  end
+
+  create_table "activity_pages", force: :cascade do |t|
+    t.integer  "page_id"
+    t.integer  "activity_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "cities", force: :cascade do |t|
@@ -147,6 +156,29 @@ ActiveRecord::Schema.define(version: 20180708225600) do
     t.datetime "updated_at",              null: false
   end
 
+  create_table "htmls", force: :cascade do |t|
+    t.string   "description"
+    t.text     "html_content"
+    t.string   "content_type"
+    t.integer  "content_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["content_type", "content_id"], name: "index_htmls_on_content_type_and_content_id", using: :btree
+  end
+
+  create_table "pages", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.text     "html"
+    t.integer  "section_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
   create_table "provinces", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -162,6 +194,12 @@ ActiveRecord::Schema.define(version: 20180708225600) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+  end
+
+  create_table "sections", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

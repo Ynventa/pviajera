@@ -11,6 +11,8 @@ es:
     cities: Ciudades
     image: Imagen
     activity: Actividad
+    activities: Actividades
+    section: Sección
     client_images: Imágenes del cliente
     client: Cliente
     clients: Clientes
@@ -50,6 +52,9 @@ es:
       document: Documentos
       contact: Contactos
       excursion: Excursiones
+      page: Paginas
+      section: Secciones
+      activity_page: Actividades por página
   devise:
     confirmations:
       confirmed: Tu cuenta ha sido confirmada satisfactoriamente.

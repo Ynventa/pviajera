@@ -10,7 +10,15 @@
   .ui.grid
     .tablet.only.column.computer.only.column
       .ui.vertical.menu.inverted.fluid
-        - if @regions
-          - @regions.each do |region|
-            %a.item{href: region_path(region.id)}
-              = region.name
+        - if @sections.any?
+          - @sections.each do |section|
+            %a.item{href: page_path(section.first_page)}
+              = section.title
+- elsif controller_name == "pages"
+  .ui.grid
+    .tablet.only.column.computer.only.column
+      .ui.vertical.menu.inverted.fluid
+        - if @pages_current_section.any?
+          - @pages_current_section.each do |page|
+            %a.item{href: page_path(page), :class => ("active" if page.id == params[:id].to_i)}
+              = page.title

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
 	mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 	mount Ckeditor::Engine => '/ckeditor'
 
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
 	resources :document, only: [:show]
 	resources :contacts
 	resources :excursions, only: [:show]
+	resources :pages, only: [:show]
 
 	namespace :v1 do
 		resources :cities, only: [:index]

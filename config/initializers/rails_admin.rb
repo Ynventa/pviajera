@@ -48,6 +48,11 @@ RailsAdmin.config do |config|
   end
 
   config.model 'Activity' do
+    edit do
+      field :name
+      field :image
+      field :clients
+    end
     list do
       field :name
       field :image
@@ -222,6 +227,27 @@ RailsAdmin.config do |config|
       field :updated_at do
         strftime_format '%d-%m-%Y'
       end
+    end
+  end
+
+  config.model 'Page' do
+    list do
+      field :title
+      field :section
+      field :created_at do
+        strftime_format '%d-%m-%Y'
+      end
+      field :updated_at do
+        strftime_format '%d-%m-%Y'
+      end
+    end
+    edit do
+      field :title
+      field :description
+      field :section
+      field :html, :ck_editor
+      field :image
+      field :activities
     end
   end
 end
