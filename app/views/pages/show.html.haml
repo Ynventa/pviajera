@@ -31,7 +31,7 @@
         .image
           = image_tag activity.image.url(:medium)
         .content
-          %a.header
+          %a.header{href: activity_city_path(activity, activity.city)}
             = activity.name
           - if activity.present?
             .meta
