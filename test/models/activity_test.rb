@@ -12,6 +12,7 @@
 #  image_updated_at   :datetime
 #  description        :string
 #  html               :text
+#  city_id            :integer
 #
 
 require 'test_helper'

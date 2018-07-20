@@ -1,8 +1,4 @@
-- if @page.image.present?
-  .ui.grid.attached.gallery
-    .sixteen.wide.computer.column{style: "background-image: url(#{asset_path @page.image.url(:large)}); background-repeat: no-repeat; background-size: cover; background-position: center", data: {imageindex: "0"}}
-
-  .ui.divider
+= render partial: "shared/image-on-top", locals: {image: @page.image}
 
 -#.ui.breadcrumb
 -#  = link_to "Inicio", root_path, {class: "section"}
@@ -27,3 +23,24 @@
 - if @page.html.present?
   .ui.segment.html-content
     = @page.html.html_safe
+
+- if @activities.any?
+  .ui.divided.items
+    - @activities.each do |activity|
+      .item
+        .image
+          = image_tag activity.image.url(:medium)
+        .content
+          %a.header
+            = activity.name
+          - if activity.present?
+            .meta
+              %span.cinema
+                = "#{activity.city.name} - #{activity.city.province.name}"
+          .description
+            %p
+              = activity.description
+          .extra
+            %a.ui.right.floated.primary.button{href: activity_city_path(activity, activity.city)}
+              Ver mas
+              %i.right.chevron.icon

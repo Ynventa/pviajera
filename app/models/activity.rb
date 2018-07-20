@@ -12,12 +12,14 @@
 #  image_updated_at   :datetime
 #  description        :string
 #  html               :text
+#  city_id            :integer
 #
 
 class Activity < ApplicationRecord
 	validates :name, presence: true
 	validates :name, length: { in: 2..200 }
 
+	belongs_to :city
   has_many :clients
 	belongs_to :section
 

@@ -12,6 +12,7 @@
 #  image_updated_at   :datetime
 #  description        :string
 #  html               :text
+#  city_id            :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

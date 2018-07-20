@@ -18,10 +18,7 @@
 @import "colors";
 
 body{
- 	background-image: asset-url("bg-sea2.jpg");
- 	background-repeat: no-repeat;
- 	background-attachment: fixed;
- 	background-size: cover;
+    background: $orange_light;
 }
 
 .regions{
@@ -41,6 +38,7 @@ body{
 
 .header-top{
 	color: #999999;
+    background: $orange_trademark;
 	text-align: right;
 	.ui{
 		&.grid{
@@ -136,21 +134,26 @@ body{
 }
 
 .ui{
-	&.card{
-		&.highlight-home{
-			border-left: solid $lightgreen_trademark 6px;
-			&:hover{
-				border-left: solid $lightgreen_trademark 6px !important;
-			}
-		}
-	}
-	.card{
-		&.banner-card{
-			border-left: solid $blue_trademark 6px;
-			&:hover{
-				border-left: solid $blue_trademark 6px !important;
-			}
-		}
-	}
+  &.card{
+      &.highlight-home{
+          border-left: solid $lightgreen_trademark 6px;
+          &:hover{
+              border-left: solid $lightgreen_trademark 6px !important;
+          }
+      }
+  }
+  .card{
+      &.banner-card{
+          border-left: solid $blue_trademark 6px;
+          &:hover{
+              border-left: solid $blue_trademark 6px !important;
+          }
+      }
+  }
+  &.menu{
+    &.inverted{
+      background: $blue_trademark;
+    }
+  }
 }
 

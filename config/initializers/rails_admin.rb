@@ -50,8 +50,11 @@ RailsAdmin.config do |config|
   config.model 'Activity' do
     edit do
       field :name
+      field :description
+      field :html, :ck_editor
       field :image
-      field :clients
+      field :city
+      # field :clients
     end
     list do
       field :name

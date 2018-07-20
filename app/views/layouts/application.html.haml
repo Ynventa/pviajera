@@ -47,10 +47,9 @@
                   = link_to "Ingresar", user_session_path, class: "ui item tablet only computer only grid #{controller_name == 'sessions' ? 'active' : ''}"
 
       = render partial: "shared/regions-navigator", locals: {regions: @regions}
-      .ui.divider
+      -#.ui.divider
       .ui.grid.padded
-        .one.wide.computer.only.column
-        .sixteen.wide.mobile.sixteen.wide.tablet.fourteen.wide.computer.column
+        .sixteen.wide.mobile.sixteen.wide.tablet.sixteen.wide.computer.column
           .ui.grid.padded
             - if controller_name == "welcome"
               .sixteen.wide.mobile.four.wide.tablet.three.wide.computer.column.left-menu
@@ -71,7 +70,7 @@
                 .twelve.wide.column
                   = yield
             - else
-              .sixteen.wide.mobile.four.wide.tablet.four.wide.computer.column.left-menu
+              .sixteen.wide.mobile.four.wide.tablet.three.wide.computer.column.left-menu
                 = render partial: "shared/left-side"
                 - if controller_name == "city"
                   = render partial: "shared/activities-per-city"
@@ -79,15 +78,14 @@
                   .ui.link.cards
                     = render partial: "shared/left-banner", locals: {banners: @banners}
               - if controller_name == "client"
-                .sixteen.wide.mobile.twelve.wide.tablet.twelve.wide.computer.column
+                .sixteen.wide.mobile.twelve.wide.tablet.fourteen.wide.computer.column
                   = yield
               - else
-                .sixteen.wide.mobile.eight.wide.tablet.eight.wide.computer.column
+                .sixteen.wide.mobile.eight.wide.tablet.ten.wide.computer.column
                   = yield
-                .four.wide.tablet.only.four.wide.computer.only.column
+                .four.wide.tablet.only.three.wide.computer.only.column
                   .ui.link.cards
                     = render partial: "shared/right-banner", locals: {banners: @banners}
-        .one.wide.computer.only.column
 
       = render partial: "shared/footer"
 

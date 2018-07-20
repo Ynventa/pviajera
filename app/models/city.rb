@@ -19,8 +19,9 @@
 class City < ApplicationRecord
 
 	validates :name, :region_id, :province_id, presence: true
-	validates :name, length: { in: 2..200 }	
+	validates :name, length: { in: 2..200 }
 
+	has_many :activities
 	belongs_to :region
 	belongs_to :province
 
