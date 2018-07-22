@@ -16,6 +16,8 @@
 #
 
 class Activity < ApplicationRecord
+	acts_as_ordered_taggable
+
 	validates :name, presence: true
 	validates :name, length: { in: 2..200 }
 

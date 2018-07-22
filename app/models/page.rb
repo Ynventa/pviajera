@@ -16,6 +16,8 @@
 #
 
 class Page < ApplicationRecord
+  acts_as_ordered_taggable
+
   has_many :activity_pages
   has_many :activities, through: :activity_pages
 
@@ -26,5 +28,9 @@ class Page < ApplicationRecord
 
   def slug
     self.title.parameterize
+  end
+
+  def virtual_field
+    self.tag_list.join(", ") if self.tag_list.any?
   end
 end

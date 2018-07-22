@@ -29,7 +29,7 @@
                           - @regions.each do |region|
                             = link_to region[:name], region_path(region.id), class: "item"
                     = link_to "Contacto", new_contact_path, class: "ui item"
-                = link_to "Inicio", root_path, class: "ui item tablet only computer only grid #{controller_name == 'welcome' ? 'active' : ''}"
+                = link_to "Inicio", root_path, class: "ui item tablet only computer only grid"
                 .ui.text.menu.tablet.only.computer.only.grid
                   %a.browse.item
                     Encontrá tu destino
@@ -40,36 +40,44 @@
                     %i.dropdown.icon
                     .menu.user-menu
                       = link_to "Datos personales", edit_user_registration_path, class: "ui item"
-                      - if current_user.admin? 
+                      - if current_user.admin?
                         = link_to "Administrador", rails_admin.dashboard_path, class: "ui item", target: "_blank"
                       = link_to "Cerrar sesión", destroy_user_session_path, method: :delete, class: "ui item"
                 - else
                   = link_to "Ingresar", user_session_path, class: "ui item tablet only computer only grid #{controller_name == 'sessions' ? 'active' : ''}"
 
       = render partial: "shared/regions-navigator", locals: {regions: @regions}
-      -#.ui.divider
-      .ui.grid.padded
-        .sixteen.wide.mobile.sixteen.wide.tablet.sixteen.wide.computer.column
-          .ui.grid.padded
-            - if controller_name == "welcome"
+      - if controller_name == "welcome"
+        / Page Contents
+        .pusher
+          .ui.vertical.masthead.center.aligned.segment
+            .ui.text.container
+              %h1.ui.inverted.header
+                Tan simple como escribir tu destino
+              .ui.fluid.search
+                .ui.icon.input.fluid
+                  %input.prompt{placeholder: "Buscar ciudade...", type: "text"}/
+                  %i.search.icon
+                .results
+          .ui.vertical.segment
+            banner
+          .ui.vertical.segment
+            .ui.grid.padded
               .sixteen.wide.mobile.four.wide.tablet.three.wide.computer.column.left-menu
                 = render partial: "shared/left-side"
-              .sixteen.wide.mobile.twelve.wide.tablet.thirteen.wide.computer.column
-                %div.logo-home
-                  = image_tag "logo_shadow.png", {class: "ui centered big image"}
-              .ui.grid.padded
-                .sixteen.wide.column
-                  .ui.divider
-                  .ui.raised.segment
-                    %p Pellentes que habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
-                  .ui.divider
-              .ui.grid.padded
-                .four.wide.column.left-menu
-                  .ui.link.cards
-                    = render partial: "shared/left-banner", locals: {banners: @banners}
-                .twelve.wide.column
-                  = yield
-            - else
+              .sixteen.wide.mobile.twelve.wide.tablet.ten.wide.computer.column
+                .ui.grid.padded
+                  .four.wide.column.left-menu
+                    .ui.link.cards
+                      = render partial: "shared/left-banner", locals: {banners: @banners}
+                  .twelve.wide.column
+                    = yield
+              .sixteen.wide.mobile.four.wide.tablet.three.wide.computer.column
+                banner
+      - else
+        .ui.grid.padded
+          .sixteen.wide.mobile.sixteen.wide.tablet.sixteen.wide.computer.column
+            .ui.grid.padded
               .sixteen.wide.mobile.four.wide.tablet.three.wide.computer.column.left-menu
                 = render partial: "shared/left-side"
                 - if controller_name == "city"
@@ -115,7 +123,7 @@
         url: "#{raw v1_cities_path}?query={query}"
       }
     });
-  
+
     $('.rating').rating({
         initialRating: 2,
         maxRating: 4,
@@ -124,7 +132,7 @@
         }
     });
     $('.ui.dropdown').dropdown();
-  
+
     $('.menu .browse').popup({
       inline   : true,
       hoverable: true,
@@ -137,7 +145,7 @@
         },
       on: 'click'
     });
-  
+
     $('.desination').popup({
       hoverable: true,
       position : 'bottom left'

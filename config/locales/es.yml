@@ -20,6 +20,7 @@ es:
     location: Ubicación
     created_at: Fecha de creación
     updated_at: Última actualización
+    tag_list: Etiquetas
   activerecord:
     attributes:
       user:

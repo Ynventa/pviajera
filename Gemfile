@@ -39,6 +39,8 @@ gem 'rails_admin_google_map'
 
 gem 'ckeditor', '4.1.3'
 
+gem 'acts-as-taggable-on', '~> 6.0'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

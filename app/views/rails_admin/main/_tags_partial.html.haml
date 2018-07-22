@@ -1,0 +1,65 @@
+- tags = form.object.tag_list
+
+.form-inline
+  = text_field_tag "tag_creator", nil, class: 'form-control'
+  %button.btn.btn-default{type: "button", name: "tag_button_creator"}
+    +
+= form.send :hidden_field, field.method_name,                                                                          |
+  field.html_attributes                                                                                                |
+    .reverse_merge({ value: tags.join(", "), class: 'form-control tag_list_input', required: field.required})          |
+
+%p.bg-warning
+  Para borrar etiquetas, clickee en el nombre
+
+.button-tags-name
+  - if tags.any?
+    - tags.each do |tag|
+      %button.btn.btn-warning.btn-sm.tag-button{type: "button", data:{tag: tag}}
+        = tag
+
+:javascript
+  $( document ).ready(function() {
+    var tag_value;
+
+    function updateTags() {
+      tag_value = new Array();
+      $(".tag-button").each(function(){
+        tag_value.push( $(this).data("tag") );
+      }).promise().done(function(){
+        $("input.tag_list_input").val( tag_value.join(", ") );
+      });
+    }
+
+    function newTag() {
+      var value = $("input[name='tag_creator']").val();
+
+      if(value!=""){
+        $(".button-tags-name").append($('<button>' + value + '</button>')
+          .attr({ type : 'button', "data-tag" : value })
+          .addClass("btn btn-warning btn-sm tag-button")
+        );
+
+        $("input[name='tag_creator']").val("");
+      }
+
+      updateTags();
+    }
+
+    $(".tag-button").click(function(){
+      $(this).remove();
+      updateTags();
+    });
+
+    $("button[name='tag_button_creator']").click(function(){
+      newTag();
+    });
+
+    $( "input[name='tag_creator']" ).keypress(function( event ) {
+      if ( event.which == 13 ) {
+        event.preventDefault();
+        newTag();
+      }
+    });
+
+
+  });
