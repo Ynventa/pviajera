@@ -27,7 +27,7 @@ RailsAdmin.config do |config|
   ## To disable Gravatar integration in Navigation Bar set to false
   # config.show_gravatar = true
 
-  config.excluded_models = ["HighlightsTracking", "ClientImage", "ActivityPage", "Excursion"]
+  config.excluded_models = ["HighlightsTracking", "ClientImage", "ActivityPage", "Excursion", "CategoryClient"]
 
   config.actions do
     dashboard                     # mandatory
@@ -142,6 +142,18 @@ RailsAdmin.config do |config|
       field :description
       field :activity
       field :city
+      field :categories
+      field :tag_list do
+        partial "tags_partial"
+      end
+
+      # field :categories do
+      #   associated_collection_scope do
+      #     Proc.new { |scope|
+      #       scope = scope.where("parent_id > 0")
+      #     }
+      #   end
+      # end
       field :location_label do
         read_only true
         label "Dirección"
@@ -258,6 +270,28 @@ RailsAdmin.config do |config|
       field :activities
       field :tag_list do
         partial "tags_partial"
+      end
+    end
+  end
+
+  config.model 'Category' do
+    list do
+      field :title
+      field :parent
+      field :created_at do
+        strftime_format '%d-%m-%Y'
+      end
+      field :updated_at do
+        strftime_format '%d-%m-%Y'
+      end
+    end
+    edit do
+      field :title
+      field :show_like_list
+      field :parent_id, :enum do
+        enum do
+          Category.all.collect {|p| [p.title, p.id] if p.parent_id==nil}.compact
+        end
       end
     end
   end

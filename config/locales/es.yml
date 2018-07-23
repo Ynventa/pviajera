@@ -21,6 +21,9 @@ es:
     created_at: Fecha de creación
     updated_at: Última actualización
     tag_list: Etiquetas
+    title: Título
+    parent: Padre
+    show_like_list: Mostrar como lista
   activerecord:
     attributes:
       user:
@@ -56,6 +59,8 @@ es:
       page: Paginas
       section: Secciones
       activity_page: Actividades por página
+      category_client: Categoría del cliente
+      category: Categoría
   devise:
     confirmations:
       confirmed: Tu cuenta ha sido confirmada satisfactoriamente.

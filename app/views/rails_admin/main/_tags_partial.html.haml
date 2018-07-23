@@ -1,21 +1,32 @@
 - tags = form.object.tag_list
 
-.form-inline
-  = text_field_tag "tag_creator", nil, class: 'form-control'
-  %button.btn.btn-default{type: "button", name: "tag_button_creator"}
-    +
-= form.send :hidden_field, field.method_name,                                                                          |
-  field.html_attributes                                                                                                |
-    .reverse_merge({ value: tags.join(", "), class: 'form-control tag_list_input', required: field.required})          |
+.row
+  .col-sm-6
+    .form-inline
+      = text_field_tag "tag_creator", nil, class: 'form-control'
+      %button.btn.btn-default{type: "button", name: "tag_button_creator"}
+        +
+    = form.send :hidden_field, field.method_name,                                                                      |
+      field.html_attributes                                                                                            |
+      .reverse_merge({ value: tags.join(", "), class: 'form-control tag_list_input', required: field.required})        |
 
-%p.bg-warning
-  Para borrar etiquetas, clickee en el nombre
+    %p.bg-warning
+      Para borrar etiquetas, clickee en el nombre
 
-.button-tags-name
-  - if tags.any?
-    - tags.each do |tag|
-      %button.btn.btn-warning.btn-sm.tag-button{type: "button", data:{tag: tag}}
-        = tag
+    .button-tags-name
+      - if tags.any?
+        - tags.each do |tag|
+          %button.btn.btn-warning.btn-sm.tag-button{type: "button", data:{tag: tag}}
+            = tag
+  .col-sm-6
+    %div
+      Etiquetas existentes
+    - tags = form.object.class.tag_counts_on(:tags)
+    - if tags.any?
+      - tags.each do |tag|
+        %button.btn.btn-danger.btn-sm.existent-tags{type: "button", data:{tag: tag}}
+          = tag
+
 
 :javascript
   $( document ).ready(function() {
@@ -30,8 +41,10 @@
       });
     }
 
-    function newTag() {
-      var value = $("input[name='tag_creator']").val();
+    function newTag(value) {
+      if(value == ""){
+        value = $("input[name='tag_creator']").val();
+      }
 
       if(value!=""){
         $(".button-tags-name").append($('<button>' + value + '</button>')
@@ -50,14 +63,18 @@
       updateTags();
     });
 
+    $(".existent-tags").click(function(){
+      newTag( $(this).data("tag") );
+    });
+
     $("button[name='tag_button_creator']").click(function(){
-      newTag();
+      newTag("");
     });
 
     $( "input[name='tag_creator']" ).keypress(function( event ) {
       if ( event.which == 13 ) {
         event.preventDefault();
-        newTag();
+        newTag("");
       }
     });
 

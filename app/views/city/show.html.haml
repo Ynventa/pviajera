@@ -1,4 +1,6 @@
-- if @activity.present?
-  = render partial: 'activity'
+- if params[:category].present?
 - else
-  = render partial: 'city'
+  - if @activity.present?
+    = render partial: 'activity'
+  - else
+    = render partial: 'city'

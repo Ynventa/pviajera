@@ -6,6 +6,7 @@ class CityController < ApplicationController
     @activities_city = []
     @excursions = Excursion.where(city_id: @city)
     @activity = nil
+    @categories = Category.only_parents
 
     if params[:activity_id]
       @clients = Client.where(city_id: params[:id], activity_id: params[:activity_id])

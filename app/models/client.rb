@@ -24,6 +24,8 @@
 #
 
 class Client < ApplicationRecord
+  acts_as_ordered_taggable
+
 	validates :name, :activity_id, :city_id, presence: true
 	validates :name, length: { in: 2..200 }
   before_save :validate_http
@@ -37,6 +39,9 @@ class Client < ApplicationRecord
 	validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   has_many :client_images, dependent: :destroy
+
+  has_many :category_clients
+  has_many :categories, through: :category_clients
 
   def youtube_embed
     regex = /(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/

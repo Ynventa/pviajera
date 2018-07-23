@@ -24,3 +24,19 @@
           - @pages_current_section.each do |page|
             %a.item{href: page_path(page), :class => ("active" if page.id == params[:id].to_i)}
               = page.title
+- elsif controller_name == "city"
+  - if @categories.any?
+    .ui.grid
+      .tablet.only.column.computer.only.column
+        .ui.vertical.menu.fluid
+          - @categories.each do |category|
+            .item
+              %a.header{href: "?category=#{category.id}"}
+                = category.title
+              - if category.children.any?
+                .menu
+                  %a.item{href: "#"}
+                    Mostrar todos
+                  - category.children.each do |subcategory|
+                    %a.item{href: "?category=#{category.id}&subcategory=#{subcategory.id}"}
+                      = subcategory.title

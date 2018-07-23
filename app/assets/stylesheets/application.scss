@@ -168,7 +168,7 @@ body{
 .masthead.segment {
   min-height: 70vh;
   padding: 1em 0em;
-  background: url("bg-forest.jpg") no-repeat !important;
+  background: asset-url("bg-forest.jpg") no-repeat !important;
   background-size: cover !important;
   background-position: 0% 50% !important;
 }

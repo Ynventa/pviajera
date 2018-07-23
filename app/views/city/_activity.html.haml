@@ -1,5 +1,3 @@
-= render partial: "shared/image-on-top", locals: {image: @activity.image}
-
 .ui.breadcrumb
   = link_to "Inicio", root_path, {class: "section"}
   %i.right.chevron.icon.divider
@@ -11,6 +9,8 @@
 %h2.ui.header
   .content
     = "#{@activity.name} en #{@city.name}"
+
+= render partial: "shared/image-on-top", locals: {image: @activity.image}
 
 - if @activity.description.present?
   = @activity.description
