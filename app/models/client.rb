@@ -26,7 +26,7 @@
 class Client < ApplicationRecord
   acts_as_ordered_taggable
 
-	validates :name, :activity_id, :city_id, presence: true
+	validates :name, :city_id, presence: true
 	validates :name, length: { in: 2..200 }
   before_save :validate_http
 

@@ -25,6 +25,8 @@
             %a.item{href: page_path(page), :class => ("active" if page.id == params[:id].to_i)}
               = page.title
 - elsif controller_name == "city"
+  %h3.ui.header
+    = @city.name
   - if @categories.any?
     .ui.grid
       .tablet.only.column.computer.only.column

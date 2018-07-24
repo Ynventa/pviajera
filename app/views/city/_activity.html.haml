@@ -34,23 +34,3 @@
 - if @city.html.present?
   .ui.segment.html-content
     = @city.html.html_safe
-
-- if @clients.any?
-  .ui.grid.attached
-    - @clients.each do |client|
-      .sixteen.wide.mobile.eight.wide.tablet.eight.wide.computer.column
-        .ui.link.cards
-          .ui.card.fluid
-            %a.content{href: client_path(client.id)}
-              %h3.ui.header
-                = client.name
-            %a.image{href: client_path(client.id)}
-              = image_tag client.image.url(:medium)
-            %a.content{href: client_path(client.id)}
-              .description
-                = reduce_text client.description
-            -#.extra
-            -#  Rating:
-            -#  .ui.star.rating{data:{rating: (0...5).to_a.sample, "max-rating": 5 }}
-- else
-  = render partial: "shared/no-results"

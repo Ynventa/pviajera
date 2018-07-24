@@ -9,21 +9,22 @@
 %h2.ui.header
   .content
     = @city.name
-- if @city.image.exists? || !@city.description.blank?
-  %div{style: "margin-bottom: 20px"}
-    .ui.card.fluid
-      - if @city.image.exists?
-        .image
-          = image_tag @city.image.url(:large)
-      - unless @city.description.blank?
-        .content
-          .description
-            = raw @city.description.to_s.gsub(/\n/, '<br/>')
 
-
-- if @city.html.present?
-  .ui.segment.html-content
-    = @city.html.html_safe
+-#- if @city.image.exists? || !@city.description.blank?
+-#  %div{style: "margin-bottom: 20px"}
+-#    .ui.card.fluid
+-#      - if @city.image.exists?
+-#        .image
+-#          = image_tag @city.image.url(:large)
+-#      - unless @city.description.blank?
+-#        .content
+-#          .description
+-#            = raw @city.description.to_s.gsub(/\n/, '<br/>')
+-#
+-#
+-#- if @city.html.present?
+-#  .ui.segment.html-content
+-#    = @city.html.html_safe
 
 - if @clients.any?
   .ui.grid.attached

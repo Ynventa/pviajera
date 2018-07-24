@@ -1,36 +1,36 @@
-- if @excursions.any?
-  %a.fluid.ui.massive.ui.button.excursion-button{href: "javascript:;"}
-    = "Excursiones"
-
-  .ui.hidden.divider
-
-- if @clients.any?
-  .ui.styled.accordion
-    - activities = @clients.map{|cl| cl.activity}.uniq
-    - activities.each do |act|
-      .title
-        %i.dropdown.icon
-        = "#{act.name} en #{@city.name}"
-      .content
-        - @clients.where(activity: act).each do |client|
-          %p.transition.visible{style: "display: block !important;"}
-            = link_to client.name, client_path(client)
-
-  .ui.hidden.divider
-
-- if @excursions.any?
-  .ui.modal.fullscreen
-    %i.close.icon
-    .header
-      = "Excursiones en #{@title}"
-    .scrolling.content
-      = render partial: "excursions", locals: {excursions: @excursions}
-
-  :javascript
-    $("a.excursion-button").click(function(){
-      $('.ui.fullscreen.modal').modal('show');
-    });
-
-
-:javascript
-  $('.ui.accordion').accordion();
+-#- if @excursions.any?
+-#  %a.fluid.ui.massive.ui.button.excursion-button{href: "javascript:;"}
+-#    = "Excursiones"
+-#
+-#  .ui.hidden.divider
+-#
+-#- if @clients.any?
+-#  .ui.styled.accordion
+-#    - activities = @clients.map{|cl| cl.activity}.uniq
+-#    - activities.each do |act|
+-#      .title
+-#        %i.dropdown.icon
+-#        = "#{act.name} en #{@city.name}"
+-#      .content
+-#        - @clients.where(activity: act).each do |client|
+-#          %p.transition.visible{style: "display: block !important;"}
+-#            = link_to client.name, client_path(client)
+-#
+-#  .ui.hidden.divider
+-#
+-#- if @excursions.any?
+-#  .ui.modal.fullscreen
+-#    %i.close.icon
+-#    .header
+-#      = "Excursiones en #{@title}"
+-#    .scrolling.content
+-#      = render partial: "excursions", locals: {excursions: @excursions}
+-#
+-#  :javascript
+-#    $("a.excursion-button").click(function(){
+-#      $('.ui.fullscreen.modal').modal('show');
+-#    });
+-#
+-#
+-#:javascript
+-#  $('.ui.accordion').accordion();

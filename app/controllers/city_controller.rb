@@ -7,13 +7,12 @@ class CityController < ApplicationController
     @excursions = Excursion.where(city_id: @city)
     @activity = nil
     @categories = Category.only_parents
+    @clients = Client.where(city_id: @city)
 
     if params[:activity_id]
-      @clients = Client.where(city_id: params[:id], activity_id: params[:activity_id])
       @activity = Activity.find(params[:activity_id])
     else
-      @clients = Client.where(city_id: params[:id]).order(:activity_id)
-      @activities_city = @clients.where(city_id: 2).map{|cl| cl.activity}.uniq
+      @activities_city = @clients.where(city_id: @city).map{|cl| cl.activity}.uniq
     end
 
   end

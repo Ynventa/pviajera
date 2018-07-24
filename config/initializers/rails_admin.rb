@@ -27,7 +27,7 @@ RailsAdmin.config do |config|
   ## To disable Gravatar integration in Navigation Bar set to false
   # config.show_gravatar = true
 
-  config.excluded_models = ["HighlightsTracking", "ClientImage", "ActivityPage", "Excursion", "CategoryClient"]
+  config.excluded_models = ["HighlightsTracking", "ActivityPage", "Excursion", "CategoryClient"]
 
   config.actions do
     dashboard                     # mandatory
@@ -140,7 +140,7 @@ RailsAdmin.config do |config|
     edit do
       field :name
       field :description
-      field :activity
+      # field :activity
       field :city
       field :categories
       field :tag_list do
