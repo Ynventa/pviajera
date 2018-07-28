@@ -150,6 +150,12 @@ body{
           }
       }
   }
+  .header.item{
+    &.logo{
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+  }
   &.menu{
     &.inverted{
       background: $blue_trademark;
@@ -160,6 +166,9 @@ body{
     text-align: left;
   }
 
+  &.medium.image{
+    width: 200px;
+  }
 }
 
 
@@ -203,3 +212,4 @@ body{
     font-size: 1.5em;
   }
 }
+
