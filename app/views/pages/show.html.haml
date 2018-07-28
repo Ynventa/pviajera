@@ -1,18 +1,19 @@
-= render partial: "shared/image-on-top", locals: {image: @page.image}
-
--#.ui.breadcrumb
--#  = link_to "Inicio", root_path, {class: "section"}
--#  %i.right.chevron.icon.divider
--#  = link_to @excursion.city.name, city_path(@excursion.city), {class: "section"}
--#  %i.right.chevron.icon.divider
--#  .active.section
--#    = "Excursiones en #{@excursion.city.name}"
-
 %h2.ui.header
   .content
     = @page.title
     -#.sub.header
     -#  .ui.star.rating{data:{rating:3, "max-rating": 5 }}
+
+-#.ui.breadcrumb
+-#  = link_to "Inicio", root_path, {class: "section"}
+-#  %i.right.chevron.icon.divider
+  -#= link_to @excursion.city.name, city_path(@excursion.city), {class: "section"}
+  -#%i.right.chevron.icon.divider
+  -#.active.section
+  -#  = "Excursiones en #{@excursion.city.name}"
+
+- unless @page.html.present?
+  = render partial: "shared/image-on-top", locals: {image: @page.image}
 
 - if @page.description.present?
   .ui.grid.attached
@@ -22,6 +23,8 @@
 
 - if @page.html.present?
   .ui.segment.html-content
+    - if @page.image.present?
+      = image_tag @page.image.url(:medium), {class: "ui medium right floated image"}
     = @page.html.html_safe
 
 - if @activities.any?

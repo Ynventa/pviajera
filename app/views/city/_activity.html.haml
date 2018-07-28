@@ -1,7 +1,9 @@
 .ui.breadcrumb
   = link_to "Inicio", root_path, {class: "section"}
-  %i.right.chevron.icon.divider
-  = link_to "Actividades", activity_index_path, {class: "section"}
+  - if @activity.pages.any?
+    %i.right.chevron.icon.divider
+    - page = @activity.pages.first
+    = link_to page.title, page_path(page), {class: "section"}
   %i.right.chevron.icon.divider
   .active.section
     = "#{@activity.name} en #{@city.name}"

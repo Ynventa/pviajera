@@ -30,7 +30,7 @@ body{
 }
 
 .html-content{
-  img{
+  img:not(.medium){
     width: 100% !important;
     height: auto !important;
   }
@@ -154,6 +154,9 @@ body{
     &.logo{
       padding-top: 0px;
       padding-bottom: 0px;
+      .medium.image{
+        width: 200px;
+      }
     }
   }
   &.menu{
@@ -165,9 +168,13 @@ body{
   &.search{
     text-align: left;
   }
-
-  &.medium.image{
-    width: 200px;
+  .header{
+    &.orangen{
+      color: $orange_trademark;
+    }
+    &.blue{
+      color: $blue_trademark;
+    }
   }
 }
 
