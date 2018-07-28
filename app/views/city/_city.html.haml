@@ -1,14 +1,26 @@
-.ui.breadcrumb
-  = link_to "Inicio", root_path, {class: "section"}
-  %i.right.chevron.icon.divider
-  = link_to "Actividades", activity_index_path, {class: "section"}
-  %i.right.chevron.icon.divider
-  .active.section
-    = @city.name
+- if @activity
+  .ui.breadcrumb
+    = link_to "Inicio", root_path, {class: "section"}
+    - if @activity.pages.any?
+      %i.right.chevron.icon.divider
+      - page = @activity.pages.first
+      = link_to page.title, page_path(page), {class: "section"}
+    %i.right.chevron.icon.divider
+    .active.section
+      = "#{@activity.name} en #{@city.name}"
 
 %h2.ui.header
   .content
     = @city.name
+
+- if @breadcrumb_category
+  .ui.menu
+    .header.item
+      = @breadcrumb_category.title
+    - @breadcrumb_category.children.each do |subcategory|
+      %a.item{href: "?category=#{@breadcrumb_category.id}&subcategory=#{subcategory.id}",
+        class: (params[:subcategory].present? and subcategory.id == params[:subcategory].to_i ? 'active' : '')}
+        = subcategory.title
 
 -#- if @city.image.exists? || !@city.description.blank?
 -#  %div{style: "margin-bottom: 20px"}
@@ -22,26 +34,29 @@
 -#            = raw @city.description.to_s.gsub(/\n/, '<br/>')
 -#
 -#
--#- if @city.html.present?
--#  .ui.segment.html-content
--#    = @city.html.html_safe
+- if params[:subcategory].present? || params[:category].present?
+  - if @clients.any?
+    .ui.grid.attached
+      - @clients.each do |client|
+        .sixteen.wide.mobile.eight.wide.tablet.four.wide.computer.column
+          .ui.cards
+            .ui.card.fluid
+              %a.content{href: client_path(client.id)}
+                %h5.ui.header.orange
+                  = client.name
+              %a.image{href: client_path(client.id)}
+                = image_tag client.image.url(:medium)
+              %a.extra.content{href: client_path(client.id)}
+                = client.basic_information
+              -#.extra
+              -#  Rating:
+              -#  .ui.star.rating{data:{rating: (0...5).to_a.sample, "max-rating": 5 }}
+  - else
+    = render partial: "shared/no-results"
 
-- if @clients.any?
-  .ui.grid.attached
-    - @clients.each do |client|
-      .sixteen.wide.mobile.eight.wide.tablet.eight.wide.computer.column
-        .ui.link.cards
-          .ui.card.fluid
-            %a.content{href: client_path(client.id)}
-              %h3.ui.header
-                = client.name
-            %a.image{href: client_path(client.id)}
-              = image_tag client.image.url(:medium)
-            %a.content{href: client_path(client.id)}
-              .description
-                = reduce_text client.description
-            -#.extra
-            -#  Rating:
-            -#  .ui.star.rating{data:{rating: (0...5).to_a.sample, "max-rating": 5 }}
 - else
-  = render partial: "shared/no-results"
+  - if @city.html.present?
+    .ui.segment.html-content
+      = @city.html.html_safe
+
+

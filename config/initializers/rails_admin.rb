@@ -137,23 +137,26 @@ RailsAdmin.config do |config|
   end
 
   config.model 'Client' do
+    list do
+      field :name
+      field :city
+      field :created_at do
+        strftime_format '%d-%m-%Y'
+      end
+      field :updated_at do
+        strftime_format '%d-%m-%Y'
+      end
+    end
+
     edit do
       field :name
-      field :description
+      # field :description
       # field :activity
       field :city
       field :categories
       field :tag_list do
         partial "tags_partial"
       end
-
-      # field :categories do
-      #   associated_collection_scope do
-      #     Proc.new { |scope|
-      #       scope = scope.where("parent_id > 0")
-      #     }
-      #   end
-      # end
       field :location_label do
         read_only true
         label "Dirección"

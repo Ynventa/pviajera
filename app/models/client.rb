@@ -69,6 +69,14 @@ class Client < ApplicationRecord
     info.html_safe
   end
 
+  def basic_information
+    info = ""
+    info = info + "<div><i class='whatsapp icon'></i> #{self.whatsapp}</div>" if self.whatsapp?
+    info = info + "<div><i class='phone volume icon'></i> #{self.phone}</div>" if self.phone?
+    info = info + "<div><i class='at icon'></i> #{self.email}</div>" if self.email?
+    info.html_safe
+  end
+
 private
   def add_http_protocol(web)
     if web.present?
