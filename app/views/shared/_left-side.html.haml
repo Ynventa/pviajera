@@ -11,11 +11,7 @@
 - if controller_name == "welcome"
   .ui.grid
     .tablet.only.column.computer.only.column
-      .ui.vertical.menu.inverted.fluid
-        - if @sections.any?
-          - @sections.each do |section|
-            %a.item{href: page_path(section.first_page)}
-              = section.title
+      BANNER
 - elsif controller_name == "pages"
   .ui.grid
     .tablet.only.column.computer.only.column

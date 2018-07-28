@@ -51,6 +51,13 @@
         / Page Contents
         .pusher
           .ui.vertical.masthead.center.aligned.segment
+            .left-side-menu-home
+              .ui.vertical.menu.inverted.fluid
+                - if @sections.any?
+                  - @sections.each do |section|
+                    %a.item{href: page_path(section.first_page)}
+                      = section.title
+
             .ui.text.container
               %h1.ui.inverted.header
                 Tan simple como escribir tu destino
