@@ -1,9 +1,13 @@
 - if banners.present?
-  - if banners.count>3
-    - banners[3..-1].each do |banner|
+  - banner_right = banners.where(location_right: true)
+  - if banner_right.any?
+    - banner_right.sample(3).each do |banner|
       .card.banner-card
-        %a.image{href: "#{client_path(banner.client.id)}"}
-          = image_tag banner.client.image.url(:medium), {class: ""}
-        %a.content{href: "#{client_path(banner.client.id)}"}
-          .header= banner.client.name
-          = render partial: "shared/contact-client", locals: {client: banner.client}
+        - if banner.image_right.exists?
+          - banner.views = banner.views.to_i + 1
+          - banner.save!
+          - if banner.link.present?
+            %a.image{href: "#{banner.link}", target: "_blank"}
+              = image_tag banner.image_right.url(:normal), {class: ""}
+          - else
+            = image_tag banner.image_right.url(:normal), {class: ""}

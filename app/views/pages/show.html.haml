@@ -28,8 +28,15 @@
     = @page.html.html_safe
 
 - if @activities.any?
+  - banners_horizontal = banner_horizontal @banners
+  - number_of_banners = banners_horizontal.count
+  - counter = 0
   .ui.divided.items
-    - @activities.each do |activity|
+    - @activities.each_with_index do |activity, index|
+      - if (index%3 == 0)
+        - counter = counter + 1
+        .item
+          = banners_horizontal[counter%number_of_banners]
       .item
         .image
           = image_tag activity.image.url(:medium)

@@ -98,11 +98,13 @@ RailsAdmin.config do |config|
       field :image
       field :description
       field :html, :ck_editor
+      field :in_home
     end
     list do
       field :name
       field :region
       field :province
+      field :in_home
       field :created_at do
         strftime_format '%d-%m-%Y'
       end
@@ -114,18 +116,36 @@ RailsAdmin.config do |config|
 
   config.model 'Highlight' do
     edit do
-      field :client
+      field :client_name
+
+      field :location_top
+      field :location_horizontal
+      field :location_left
+      field :location_right
+      field :top_video
+
+      field :image_top
+      field :image_horizontal
+      field :image_left
+      field :image_left_fliped
+      field :image_right
+      field :image_right_fliped
+
+      field :top_video_url
+      field :link
+
       field :date_start do
         strftime_format '%d-%m-%Y'
       end
       field :date_end do
         strftime_format '%d-%m-%Y'
       end
-      field :image
+
       field :status
     end
     list do
-      field :client
+      field :client_name
+      field :location_banners
       field :date_start do
         strftime_format '%d-%m-%Y'
       end

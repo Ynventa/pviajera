@@ -11,7 +11,7 @@
 - if controller_name == "welcome"
   .ui.grid
     .tablet.only.column.computer.only.column
-      BANNER
+      = render partial: "shared/left-banner", locals: {banners: @banners}
 - elsif controller_name == "pages"
   .ui.grid
     .tablet.only.column.computer.only.column
@@ -38,3 +38,5 @@
                   - category.children.each do |subcategory|
                     %a.item{href: "?category=#{category.id}&subcategory=#{subcategory.id}"}
                       = subcategory.title
+- elsif controller_name == "client"
+  = render partial: "shared/left-banner", locals: {banners: @banners}

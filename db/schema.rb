@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180722230519) do
+ActiveRecord::Schema.define(version: 20180805223058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,8 +54,8 @@ ActiveRecord::Schema.define(version: 20180722230519) do
   create_table "cities", force: :cascade do |t|
     t.string   "name"
     t.integer  "region_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "province_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20180722230519) do
     t.datetime "image_updated_at"
     t.text     "description"
     t.text     "html"
+    t.boolean  "in_home",            default: false
   end
 
   create_table "ckeditor_assets", force: :cascade do |t|
@@ -149,18 +150,45 @@ ActiveRecord::Schema.define(version: 20180722230519) do
   end
 
   create_table "highlights", force: :cascade do |t|
-    t.integer  "client_id"
     t.date     "date_start"
     t.date     "date_end"
-    t.integer  "status",             limit: 2
+    t.integer  "status",                          limit: 2
     t.integer  "views"
     t.integer  "clicks"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
+    t.boolean  "location_top",                              default: false
+    t.boolean  "location_horizontal",                       default: false
+    t.boolean  "location_left",                             default: false
+    t.boolean  "location_right",                            default: false
+    t.boolean  "top_video",                                 default: false
+    t.string   "image_top_file_name"
+    t.string   "image_top_content_type"
+    t.integer  "image_top_file_size"
+    t.datetime "image_top_updated_at"
+    t.string   "image_horizontal_file_name"
+    t.string   "image_horizontal_content_type"
+    t.integer  "image_horizontal_file_size"
+    t.datetime "image_horizontal_updated_at"
+    t.string   "image_left_file_name"
+    t.string   "image_left_content_type"
+    t.integer  "image_left_file_size"
+    t.datetime "image_left_updated_at"
+    t.string   "image_left_fliped_file_name"
+    t.string   "image_left_fliped_content_type"
+    t.integer  "image_left_fliped_file_size"
+    t.datetime "image_left_fliped_updated_at"
+    t.string   "image_right_file_name"
+    t.string   "image_right_content_type"
+    t.integer  "image_right_file_size"
+    t.datetime "image_right_updated_at"
+    t.string   "image_right_fliped_file_name"
+    t.string   "image_right_fliped_content_type"
+    t.integer  "image_right_fliped_file_size"
+    t.datetime "image_right_fliped_updated_at"
+    t.string   "top_video_url"
+    t.string   "link"
+    t.string   "client_name"
   end
 
   create_table "highlights_trackings", force: :cascade do |t|

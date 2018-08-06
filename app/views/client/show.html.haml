@@ -1,107 +1,107 @@
 .ui.grid.attached.gallery
-	- if @client.client_images.any?
-		%a.sixteen.wide.mobile.sixteen.wide.tablet.twelve.wide.computer.column{href:"javascript:void(0)", style: "background-image: url(#{asset_path @client.image.url(:large)}); background-repeat: no-repeat; background-size: cover; background-position: center", data: {imageindex: "0"}}
-		.sixteen.wide.mobile.sixteen.wide.tablet.four.wide.computer.column
-			.ui.grid.attached
-				- @client.client_images.each_with_index do |image, i|
-					- image = asset_path image.image.url(:medium)
-					%a.eight.wide.column{href:"javascript:void(0)", style: "background-image: url(#{image}); background-repeat: no-repeat; background-size: cover; background-position: center", data: {imageindex: "#{i+1}"}}
+  - if @client.client_images.any?
+    %a.sixteen.wide.mobile.sixteen.wide.tablet.twelve.wide.computer.column{href:"javascript:void(0)", style: "background-image: url(#{asset_path @client.image.url(:large)}); background-repeat: no-repeat; background-size: cover; background-position: center", data: {imageindex: "0"}}
+    .sixteen.wide.mobile.sixteen.wide.tablet.four.wide.computer.column
+      .ui.grid.attached
+        - @client.client_images.each_with_index do |image, i|
+          - image = asset_path image.image.url(:medium)
+          %a.eight.wide.column{href:"javascript:void(0)", style: "background-image: url(#{image}); background-repeat: no-repeat; background-size: cover; background-position: center", data: {imageindex: "#{i+1}"}}
 
-	- else
-		%a.sixteen.wide.computer.column{href:"javascript:void(0)", style: "background-image: url(#{asset_path @client.image.url(:large)}); background-repeat: no-repeat; background-size: cover; background-position: center", data: {imageindex: "0"}}
+  - else
+    %a.sixteen.wide.computer.column{href:"javascript:void(0)", style: "background-image: url(#{asset_path @client.image.url(:large)}); background-repeat: no-repeat; background-size: cover; background-position: center", data: {imageindex: "0"}}
 
 .ui.divider
 
 .ui.breadcrumb
-	= link_to "Inicio", root_path, {class: "section"}
-	%i.right.chevron.icon.divider
-	= link_to @client.activity.name, activity_path(@client.activity.id), {class: "section"}
-	%i.right.chevron.icon.divider
-	.active.section
-		= @client.name
+  = link_to "Inicio", root_path, {class: "section"}
+  %i.right.chevron.icon.divider
+  = link_to @client.activity.name, activity_path(@client.activity.id), {class: "section"}
+  %i.right.chevron.icon.divider
+  .active.section
+    = @client.name
 
 %h2.ui.header
-	.content 
-		= "#{@client.name} (#{@client.city.name})"
-		-#.sub.header
-		-#	.ui.star.rating{data:{rating:3, "max-rating": 5 }}
+  .content
+    = "#{@client.name} (#{@client.city.name})"
+    -#.sub.header
+    -#	.ui.star.rating{data:{rating:3, "max-rating": 5 }}
 
 - if @client.description.present? || @client.show_information.present?
-	.ui.grid.attached
-		- if @client.show_information.present?
-			.six.wide.column
-				.ui.stacked.segment
-					= @client.show_information
-		- if @client.description.present?
-			.ten.wide.column
-				.ui.stacked.segment
-					= @client.description
+  .ui.grid.attached
+    - if @client.show_information.present?
+      .six.wide.column
+        .ui.stacked.segment
+          = @client.show_information
+    - if @client.description.present?
+      .ten.wide.column
+        .ui.stacked.segment
+          = @client.description
 
 - if @client.youtube_embed.present?
-	.ui.stacked.segment
-		.ui.embed.video{data:{url: @client.youtube_embed}}
+  .ui.stacked.segment
+    .ui.embed.video{data:{url: @client.youtube_embed}}
 
 - if @client.google_map.present?
-	.ui.stacked.segment
-		#map
+  .ui.stacked.segment
+    #map
 
 .ui.modal.modal_gallery
-	%i.close.icon
-	.image.content
-		.ui.massive.image
-			= image_tag "", {class: "", id: "gallery_image"}
-	.actions
-		.ui.button#prev Anterior
-		.ui.button#next Siguiente
+  %i.close.icon
+  .image.content
+    .ui.massive.image
+      = image_tag "", {class: "", id: "gallery_image"}
+  .actions
+    .ui.button#prev Anterior
+    .ui.button#next Siguiente
 
 :javascript
-	var images_gallery=[];
-	images_gallery[0] = "#{asset_path @client.image.url(:large)}"
-	var current_image = 0;
-	#{raw @client.client_images.each_with_index.map{|image, i| "images_gallery[#{i+1}] = \"#{asset_path image.image.url(:large)}\""}.join(";\n")}
+  var images_gallery=[];
+  images_gallery[0] = "#{asset_path @client.image.url(:large)}"
+  var current_image = 0;
+  #{raw @client.client_images.each_with_index.map{|image, i| "images_gallery[#{i+1}] = \"#{asset_path image.image.url(:large)}\""}.join(";\n")}
 
-	$(function(){
-		$("a.column").click(function(){
-			img = parseInt($(this).attr("data-imageindex"));
-			current_image=img
-			$("#gallery_image").attr("src", images_gallery[current_image])
-			$('.ui.modal.modal_gallery').modal('show');
-		});
+  $(function(){
+      $("a.column").click(function(){
+          img = parseInt($(this).attr("data-imageindex"));
+          current_image=img
+          $("#gallery_image").attr("src", images_gallery[current_image])
+          $('.ui.modal.modal_gallery').modal('show');
+      });
 
-		$(".modal_gallery #prev").click(function(){
-			current_image--;
-			if(current_image<0){
-				current_image=0;
-			}
-			$("#gallery_image").attr("src", images_gallery[current_image])
-			$('.ui.modal.modal_gallery').modal('refresh');
-			
-		});
-		$(".modal_gallery #next").click(function(){
-			current_image++;
-			if(current_image>=images_gallery.length){
-				current_image=images_gallery.length-1;
-			}
-			$("#gallery_image").attr("src", images_gallery[current_image])
-			$('.ui.modal.modal_gallery').modal('refresh');
-		});
+      $(".modal_gallery #prev").click(function(){
+          current_image--;
+          if(current_image<0){
+              current_image=0;
+          }
+          $("#gallery_image").attr("src", images_gallery[current_image])
+          $('.ui.modal.modal_gallery').modal('refresh');
 
-		#{@client.youtube_embed.present? ? "$('.ui.embed').embed();".html_safe : ""}
-	});
+      });
+      $(".modal_gallery #next").click(function(){
+          current_image++;
+          if(current_image>=images_gallery.length){
+              current_image=images_gallery.length-1;
+          }
+          $("#gallery_image").attr("src", images_gallery[current_image])
+          $('.ui.modal.modal_gallery').modal('refresh');
+      });
 
-	var location_map = #{@client.google_map.present? ? "{lat: #{@client.google_map["location"]["latitude"]}, lng: #{@client.google_map["location"]["longitude"]}}" : "{}"}
-	#{@client.google_map ? "
-		function initMap() {
-			var map = new google.maps.Map(document.getElementById('map'), {
-				zoom: 14,
-				center: location_map
-			});
-			var marker = new google.maps.Marker({
-				position: location_map,
-				map: map
-			});
-		}
-	".html_safe : ""}
+      #{@client.youtube_embed.present? ? "$('.ui.embed').embed();".html_safe : ""}
+  });
+
+  var location_map = #{@client.google_map.present? ? "{lat: #{@client.google_map["location"]["latitude"]}, lng: #{@client.google_map["location"]["longitude"]}}" : "{}"}
+  #{@client.google_map ? "
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 14,
+        center: location_map
+      });
+      var marker = new google.maps.Marker({
+        position: location_map,
+        map: map
+      });
+    }
+  ".html_safe : ""}
 
 - if @client.google_map
-	%script{:async => "", :defer => "", :src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyBkEq2XlKAtX1ASfflNaRTK9cX4c0hg0JA&callback=initMap"}
+  %script{:async => "", :defer => "", :src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyBkEq2XlKAtX1ASfflNaRTK9cX4c0hg0JA&callback=initMap"}

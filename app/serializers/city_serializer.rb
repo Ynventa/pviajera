@@ -14,6 +14,7 @@
 #  image_updated_at   :datetime
 #  description        :text
 #  html               :text
+#  in_home            :boolean          default(FALSE)
 #
 
 class CitySerializer < ActiveModel::Serializer

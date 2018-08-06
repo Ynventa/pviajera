@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def load_vars
-		@banners = Highlight.where("date_start <= ? and date_end >= ?", Time.now, Time.now).where(:status => :running).order(views: :asc).limit(6)
+		@banners = Highlight.actives
 		@regions = Region.all
 		@actividades = Activity.all
 	end

@@ -4,6 +4,7 @@ class WelcomeController < ApplicationController
 
 	def index
 		@sections = Section.with_pages
+		@cities = City.where(in_home: true)
 	end
 
 	def show

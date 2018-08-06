@@ -1,10 +1,14 @@
--#.ui.grid.attached
--#	- @actividades.each do |act|
--#		.sixteen.wide.mobile.eight.wide.tablet.eight.wide.computer.column
--#			.ui.link.cards
--#				.ui.card.fluid.highlight-home
--#					%a.content{href: activity_path(act.id)}
--#						%h3.ui.header
--#							= act[:name]
--#					%a.image{href: activity_path(act.id)}
--#						= image_tag act.image.url(:medium)
+.ui.grid.attached
+  - @cities.each do |city|
+    .sixteen.wide.mobile.six.wide.tablet.four.wide.computer.column
+      .ui.cards
+        %a.ui.card.fluid.highlight-home{href: city_path(city)}
+          .content
+            %h3.ui.header
+              = city.name
+          .image
+            = image_tag city.image.url(:medium)
+          - if city.description.present?
+            .content
+              .description
+                = city.description

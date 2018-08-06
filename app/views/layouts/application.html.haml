@@ -67,20 +67,15 @@
                   %i.search.icon
                 .results
           .ui.vertical.segment
-            banner
+            = banner_top_home @banners
           .ui.vertical.segment
             .ui.grid.padded
               .sixteen.wide.mobile.four.wide.tablet.three.wide.computer.column.left-menu
                 = render partial: "shared/left-side"
               .sixteen.wide.mobile.twelve.wide.tablet.ten.wide.computer.column
-                .ui.grid.padded
-                  .four.wide.column.left-menu
-                    .ui.link.cards
-                      = render partial: "shared/left-banner", locals: {banners: @banners}
-                  .twelve.wide.column
-                    = yield
+                = yield
               .sixteen.wide.mobile.four.wide.tablet.three.wide.computer.column
-                banner
+                = render partial: "shared/right-banner", locals: {banners: @banners}
       - else
         .ui.grid.padded
           .sixteen.wide.mobile.sixteen.wide.tablet.sixteen.wide.computer.column

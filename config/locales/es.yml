@@ -24,6 +24,7 @@ es:
     title: Título
     parent: Padre
     show_like_list: Mostrar como lista
+    in_home: En página de inicio
   activerecord:
     attributes:
       user:
